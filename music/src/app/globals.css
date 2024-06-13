@@ -1,0 +1,90 @@
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
+}
+
+button,
+.btn {
+  cursor: pointer;
+}
+
+
+.btnText:hover {
+  border-color: #d9b6ff;
+  color: #d9b6ff;
+  cursor: pointer;
+}
+
+.btnIcon:hover svg {
+  fill: transparent;
+  stroke: #acacac;
+  cursor: pointer;
+}
+
+.btnText:active {
+  border-color: #ad61ff;
+  color: #ad61ff;
+  cursor: pointer;
+}
+
+.btnIcon:active svg {
+  fill: transparent;
+  stroke: #ffffff;
+  cursor: pointer;
+}
+
+.btnIcon:active .trackPlay__likeSvg,
+.btnIcon:active .trackPlay__dislikeSvg {
+  fill: #696969;
+  stroke: #ffffff;
+  cursor: pointer;
+}
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+ul li {
+  list-style: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+}
+
