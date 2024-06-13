@@ -19,17 +19,19 @@ button,
   cursor: pointer;
 }
 
-.btnIcon:hover svg {
-  fill: transparent;
-  stroke: #acacac;
-  cursor: pointer;
-}
 
 .btnText:active {
   border-color: #ad61ff;
   color: #ad61ff;
   cursor: pointer;
 }
+
+.btnIcon:hover svg {
+  fill: transparent;
+  stroke: #acacac;
+  cursor: pointer;
+}
+
 
 .btnIcon:active svg {
   fill: transparent;

@@ -90,6 +90,7 @@
   
   .player__btnPrev {
     margin-right: 23px;
+    cursor: pointer;
   }
   
   .player__btnPrevSvg {
@@ -99,6 +100,7 @@
   
   .player__btnPlay {
     margin-right: 23px;
+    cursor: pointer;
   }
   
   .player__btnPlaySvg {
@@ -110,6 +112,7 @@
   .player__btnNext {
     margin-right: 28px;
     fill: #a53939;
+    cursor: pointer;
   }
   
   .player__btnNextSvg {
@@ -262,3 +265,24 @@
     fill: transparent;
     stroke: #696969;
   }
+
+  .btnIcon:hover svg {
+    fill: transparent;
+    stroke: #acacac;
+    cursor: pointer;
+  }
+  
+  
+  .btnIcon:active svg {
+    fill: transparent;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
+  
+  .btnIcon:active .trackPlay__likeSvg,
+  .btnIcon:active .trackPlay__dislikeSvg {
+    fill: #696969;
+    stroke: #ffffff;
+    cursor: pointer;
+  }
+  
