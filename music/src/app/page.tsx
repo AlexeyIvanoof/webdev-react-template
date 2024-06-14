@@ -6,6 +6,7 @@ import Centerblock from "@/components/centerblock/centerBlock";
 
 export default function Home() {
   return (
+    <body>
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <main className={styles.main}>
@@ -17,5 +18,6 @@ export default function Home() {
         <footer className={styles.footer}></footer>
       </div>
     </div>
+    </body>
   );
 }

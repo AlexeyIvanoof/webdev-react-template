@@ -4,21 +4,22 @@
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-
 }
+
+@import url('https://fonts.googleapis.com/css2?  family=Montserrat:ital,wght@0,100;0,200;1,100;1,200&display=swap');
+
+body{ font-family: 'Montserrat', sans-serif; }
 
 button,
 .btn {
   cursor: pointer;
 }
 
-
 .btnText:hover {
   border-color: #d9b6ff;
   color: #d9b6ff;
   cursor: pointer;
 }
-
 
 .btnText:active {
   border-color: #ad61ff;
@@ -32,20 +33,18 @@ button,
   cursor: pointer;
 }
 
-
 .btnIcon:active svg {
   fill: transparent;
   stroke: #ffffff;
   cursor: pointer;
 }
 
-.btnIcon:active .trackPlay__likeSvg,
-.btnIcon:active .trackPlay__dislikeSvg {
+.btnIcon:active .trackPlayLikeSvg,
+.btnIcon:active .trackPlayDislikeSvg {
   fill: #696969;
   stroke: #ffffff;
   cursor: pointer;
 }
-
 
 * {
   box-sizing: border-box;
@@ -63,7 +62,6 @@ body {
   font-family: "Montserrat", sans-serif;
   color: #ffffff;
 }
-
 
 a {
   color: inherit;
@@ -89,4 +87,3 @@ a:visited {
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
 }
-

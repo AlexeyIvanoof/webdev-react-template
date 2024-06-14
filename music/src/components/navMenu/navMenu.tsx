@@ -1,35 +1,43 @@
 import Image from "next/image";
 import classNames from "classnames";
-import styles from "./navMenu.module.css"
+import styles from "./navMenu.module.css";
 
 export default function NawMenu() {
-    return (
-        <nav className={classNames(styles.main__nav, styles.nav)}>
-        <div className={classNames(styles.nav__logo, styles.logo)}>
-          <Image className="logo__image"
-          alt="logo__image"
-          src="/logo.png "
+  return (
+    <nav className={classNames(styles.mainNav, styles.nav)}>
+      <div className={classNames(styles.navLogo, styles.logo)}>
+        <Image
+          className={styles.logoImage}
+          alt="logoImage"
+          src="/logo.png"
           width={113.33}
-          height={17}/>
-        </div>
-        <div className={classNames(styles.nav__burger, styles.burger)}>
-          <span className={styles.burger__line}></span>
-          <span className={styles.burger__line}></span>
-          <span className={styles.burger__line}></span>
-        </div>
-        <div className={styles.nav__menu}>
-          <ul className={styles.menu__list}>
-            <li className={styles.menu__item}>
-              <a href="#" className={styles.menu__link}>Главное</a>
-            </li>
-            <li className={styles.menu__item}>
-              <a href="#" className={styles.menu__link}>Мой плейлист</a>
-            </li>
-            <li className={styles.menu__item}>
-              <a href="../signin.html" className={styles.menu__link}>Войти</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-        )
-    }
+          height={17}
+        />
+      </div>
+      <div className={classNames(styles.navBurger, styles.burger)}>
+        <span className={styles.burgerLine}></span>
+        <span className={styles.burgerLine}></span>
+        <span className={styles.burgerLine}></span>
+      </div>
+      <div className={styles.navMenu}>
+        <ul className={styles.menuList}>
+          <li className={styles.menuItem}>
+            <a href="#" className={styles.menuLink}>
+              Главное
+            </a>
+          </li>
+          <li className={styles.menuItem}>
+            <a href="#" className={styles.menuLink}>
+              Мой плейлист
+            </a>
+          </li>
+          <li className={styles.menuItem}>
+            <a href="../signin.html" className={styles.menuLink}>
+              Войти
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
+}

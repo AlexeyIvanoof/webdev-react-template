@@ -6,11 +6,11 @@ import PlayList from "../playList/playList"
 
 export default function Centerblock() {
     return (
-        <div className={styles.main__centerblock}>
+        <div className={styles.mainCenterblock}>
         <CenterblockSearch/>
-         <h2 className={styles.centerblock__h2}>Треки</h2>
+         <h2 className={styles.centerblockH2}>Треки</h2>
         <Filter/>
-         <div className={styles.centerblock__content}>
+         <div className={styles.centerblockContent}>
           <TrackListTitle/>
           <PlayList/>
          </div>
