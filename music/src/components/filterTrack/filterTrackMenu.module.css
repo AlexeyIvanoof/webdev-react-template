@@ -1,0 +1,143 @@
+/*.filterCategoryName {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+  };
+
+  .filterButton {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid #ffffff;
+    border-radius: 60px;
+    padding: 6px 20px;
+  }
+  
+  .filterButton:not(:last-child) {
+    margin-right: 10px;
+  }
+  
+  .btnText:hover {
+    border-color: #d9b6ff;
+    color: #d9b6ff;
+    cursor: pointer;
+  }
+  
+  .btnText:active {
+    border-color: #ad61ff;
+    color: #ad61ff;
+    cursor: pointer;
+  }
+
+  .filterCategoryMenu {
+  max-height: 305px;
+  width: 248px;
+  display: inline-flex;
+  padding: 34px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 12px;
+  background: #313131;
+  position: absolute;
+  top: 49px;
+  z-index: 2;
+  };
+
+.filterList {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  color: #fff;
+  font-family: "StratosSkyeng", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; 
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: white;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 9em;
+    background-color: #909090;
+    height: 15px;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background-color: #4b4949;
+  }
+};
+
+  .selectedFilterCount {
+  background-color: #ad61ff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13px; 
+  };*/
+
+  .filterBtn {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    border: 1px solid #ffffff;
+    border-radius: 60px;
+    padding: 6px 20px 8px;
+    position: relative;
+    background-color: transparent;
+    color: #ffffff;
+    text-align: center;
+  }
+  .filterBtn:hover {
+    color: rgb(173, 97, 255);
+    border-color: rgb(173, 97, 255);
+  }
+  .filterBtn:active {
+    border-color: #ad61ff;
+    color: #ad61ff;
+    cursor: pointer;
+  }
+  .list {
+    margin-top: 10px;
+    background-color: rgb(49, 49, 49);
+    position: absolute;
+    width: 248px;
+    height: auto;
+    border-radius: 12px;
+    text-align: center;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  
+  .listItem {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .listItem:hover {
+    color: rgb(173, 97, 255);
+    text-decoration: underline;
+  }
