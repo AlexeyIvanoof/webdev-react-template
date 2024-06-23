@@ -44,6 +44,7 @@ type FilterProps = {
 
 export default function Filter({tracks}:FilterProps) {
 const getUniqueAuthors = getUniqueValues(tracks, "author")
+const getUniqueGenres = getUniqueValues(tracks, "genre")
 const [activeFilter, setActiveFilter] =  useState<string | null>(null);
 const handleFilter =(filterName: string) => {
 setActiveFilter((prev) => (prev === filterName ? null : filterName))
@@ -52,16 +53,25 @@ setActiveFilter((prev) => (prev === filterName ? null : filterName))
   return (
     <div className={styles.centerblockFilter}>
       <div className={styles.filterTitle}>Искать по:</div>
-      <FilterItem title={"исполнителю"} list={getUniqueAuthors} handleFilter = {handleFilter} isActive = {true}/>
-      <div className={classNames(styles.filterButton, styles.btnText)}>
-        исполнителю
-      </div>
-      <div className={classNames(styles.filterButton, styles.btnText)}>
-        году выпуска
-      </div>
-      <div className={classNames(styles.filterButton, styles.btnText)}>
-        жанру
-      </div>
+      <FilterItem title={"исполнителю"}
+      list={getUniqueAuthors}
+      handleFilter={handleFilter}
+      isActive={activeFilter === "исполнителю"}
+      filterName={"исполнителю"} numberSelectedValues={0}/>
+
+      <FilterItem 
+       title={"жанру"} 
+       list={getUniqueGenres} 
+       handleFilter = {handleFilter} 
+       isActive = {activeFilter === "жанру"} 
+       filterName={"жанру"}/>
+
+      <FilterItem 
+       title={"году выпуска"} 
+       list={SORT_OPTIONS} 
+       handleFilter = {handleFilter} 
+       isActive = {activeFilter === "году выпуска"} 
+       filterName={"году выпуска"}/>
     </div>
   );
 }
