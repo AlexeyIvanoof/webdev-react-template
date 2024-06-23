@@ -1,4 +1,4 @@
-import styles from "./centerBlock.module.css"
+/*import styles from "./centerBlock.module.css"
 import CenterblockSearch from "../centerBlockSesrch/centerBlockSearch"
 import Filter from "../filterTrack/filterTrack"
 import TrackListTitle from "../trackListTitle/trackListTitle"
@@ -14,6 +14,20 @@ export default function Centerblock() {
           <TrackListTitle/>
           <PlayList/>
          </div>
+       </div>
+    )
+}*/
+
+
+import styles from "./centerBlock.module.css"
+import CenterblockSearch from "../centerBlockSesrch/centerBlockSearch"
+import Tracks from "../tracks/Track"
+
+export default function Centerblock() {
+    return (
+        <div className={styles.mainCenterblock}>
+        <CenterblockSearch/>
+         <Tracks/>
        </div>
     )
 }

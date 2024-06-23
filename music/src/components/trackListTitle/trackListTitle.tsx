@@ -1,8 +1,15 @@
+import { TrackType } from "@/types/types";
+import PlayList from "../playList/playList";
 import styles from "./trackListTitle.module.css";
 import classNames from "classnames";
 
-export default function TrackListTitle() {
+type TrackListTitleProps = {
+  tracks: TrackType[]
+}
+
+export default function TrackListTitle({tracks}:TrackListTitleProps) {
   return (
+    <div className={styles.centerblockContent}>
     <div className={styles.contentTitle}>
       <div className={classNames(styles.playlistTitleCol, styles.col01)}>
         Трек
@@ -18,6 +25,10 @@ export default function TrackListTitle() {
           <use xlinkHref="/sprite.svg#icon-watch"></use>
         </svg>
       </div>
+    </div>
+    <div className={styles.contentPlaylist}>
+    {tracks.map((track)=> <PlayList key={track.id} track={track}/>)}
+    </div>
     </div>
   );
 }
