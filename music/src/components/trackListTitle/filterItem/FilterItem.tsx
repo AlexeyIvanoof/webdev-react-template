@@ -1,6 +1,5 @@
 import classNames from "classnames"
 import styles from "./filterItem.module.css";
-import { useEffect } from "react";
 
 type Props = {
     title: string;
@@ -9,18 +8,14 @@ type Props = {
     handleFilter: (filterName: string) => void;
     filterName: string;
     numberSelectedValues: number;
-   
+    isOpen: boolean;
 }
 
-export function FilterItem ({title, list, isActive,  handleFilter, filterName, numberSelectedValues}: Props) {
-
-    useEffect(() => {
-        console.log("numberSelectedValues", numberSelectedValues);
-      }, [numberSelectedValues]);
+export function FilterItem ({title, list, isActive,  handleFilter, filterName, numberSelectedValues, isOpen}: Props) {
 
 return(
 <div>
-     <div className={classNames(styles.filterButton, styles.btnText)}  onClick={() =>  handleFilter(filterName)} >
+     <div  onClick={() =>  handleFilter(filterName)} className={classNames(styles.filterButton, styles.btnText)}  >
     {title}
     </div>
     {numberSelectedValues > 0 && (
@@ -29,7 +24,7 @@ return(
 {isActive && (
         <ul className={styles.list}>
           {list.map((item, index) => (
-            <li className={styles.listItem} key={index} >
+            <li className={classNames(styles.listItem, {[styles.active]:isOpen})}  key={index}>
               {item}
             </li>
           ))}

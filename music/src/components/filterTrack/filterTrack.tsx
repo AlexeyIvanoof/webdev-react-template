@@ -32,7 +32,6 @@ export default function Filter() {
 'use client'
 import { TrackType } from "@/types/types";
 import styles from "./filterTrack.module.css";
-import classNames from "classnames";
 import { getUniqueValues } from "@/utils/getUniqueValues";
 import { FilterItem } from "../trackListTitle/filterItem/FilterItem";
 import { useState } from "react";
