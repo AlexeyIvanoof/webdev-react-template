@@ -18,7 +18,6 @@ export default function Centerblock() {
     )
 }*/
 
-
 import styles from "./centerBlock.module.css"
 import CenterblockSearch from "../centerBlockSesrch/centerBlockSearch"
 import Tracks from "../tracks/Track"

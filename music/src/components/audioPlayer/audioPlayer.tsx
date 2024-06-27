@@ -1,4 +1,4 @@
-'use client'
+/*'use client'
 import VolumeBlock from "../volumeBlock/volumeBlock";
 import styles from "./AudioPlayer.module.css";
 import classNames from "classnames";
@@ -104,27 +104,27 @@ export const AudioPlayer : React.FC<Player> = ({tracks, currentTrack, setCurrent
                 <div className={styles.playerBtnPrev}>
 
                 <svg onClick={prevTrack} className={classNames(styles.playerBtnPrevSvg, styles.btn)}>
-                    <use href="img/icon/sprite.svg#icon-prev"></use>
+                    <use href="sprite.svg#icon-prev"></use>
                   </svg>
                 </div>
                 <div className={styles.playerBtnPlay}>
                 <svg onClick={togglePlay} className={classNames(styles.playerBtnPlaySvg, styles.btn)}>
-                    {isPlaying ? <use href="img/icon/sprite.svg#icon-pause"></use> : <use href="img/icon/sprite.svg#icon-play"></use>}
+                    {isPlaying ? <use href="sprite.svg#icon-pause"></use> : <use href="sprite.svg#icon-play"></use>}
                   </svg>
                 </div>
                 <div className={styles.playerBtnNext}>
                 <svg onClick={nextTrack} className={classNames(styles.playerBtnNextSvg, styles.btn)}>
-                    <use href="img/icon/sprite.svg#icon-next"></use>
+                    <use href="sprite.svg#icon-next"></use>
                   </svg>
                 </div>
                 <div className={classNames(styles.playerBtnRepeat, styles.btnIcon)}>
                 <svg onClick={toggleLoop} className={classNames(styles.playerBtnRepeatSvg, styles.btn, isLoop ? styles.playerBtnRepeatSvgActive : null)}>
-                    <use href="img/icon/sprite.svg#icon-repeat"></use>
+                    <use href="sprite.svg#icon-repeat"></use>
                   </svg>
                 </div>
                 <div className={classNames(styles.playerBtnShuffle, styles.btnIcon)}>
                   <svg className={styles.playerBtnShuffleSvg}>
-                    <use href="img/icon/sprite.svg#icon-shuffle"></use>
+                    <use href="sprite.svg#icon-shuffle"></use>
                   </svg>
                 </div>
               </div>
@@ -132,7 +132,7 @@ export const AudioPlayer : React.FC<Player> = ({tracks, currentTrack, setCurrent
                 <div className={styles.trackPlayContain}>
                   <div className={styles.trackPlayImage}>
                     <svg className={styles.trackPlaySvg}>
-                      <use href="img/icon/sprite.svg#icon-note"></use>
+                      <use href="sprite.svg#icon-note"></use>
                     </svg>
                   </div>
                   <div className={styles.trackPlayAuthor}>
@@ -146,14 +146,14 @@ export const AudioPlayer : React.FC<Player> = ({tracks, currentTrack, setCurrent
                 <div className={styles.trackPlayLikeDis}>
                   <div className={classNames(styles.trackPlayLike, styles.btnIcon)}>
                     <svg className={styles.trackPlayLikeSvg}>
-                      <use href="img/icon/sprite.svg#icon-like"></use>
+                      <use href="sprite.svg#icon-like"></use>
                     </svg>
                   </div>
                   <div className={classNames(styles.track_playDislike, styles.btnIcon)}>
                     <svg className={styles.trackPlayDislikeSvg}>
-                      <use href="img/icon/sprite.svg#icon-dislike"></use>
+                      <use href="sprite.svg#icon-dislike"></use>
                     </svg>
-                  </div>
+                  </div>/
                 </div>
               </div>
             </div>
@@ -163,14 +163,21 @@ export const AudioPlayer : React.FC<Player> = ({tracks, currentTrack, setCurrent
       </div>
     )
 }
+*/
 
+'use client'
+import VolumeBlock from "../volumeBlock/volumeBlock";
+import styles from "./AudioPlayer.module.css";
+import classNames from "classnames";
 
-/*export default function AudioPlayer() {
+type AudioPlayerProps ={
+  name: string,
+  author: string,
+}
+
+export default function AudioPlayer({name, author}: AudioPlayerProps) {
   return (
-    <div className={styles.bar}>
-      <div className={styles.barContent}>
-        <div className={styles.barPlayerProgress}></div>
-        <div className={styles.barPlayerBlock}>
+    <>
           <div className={styles.barPlayer}>
             <div className={styles.playerControls}>
               <div className={styles.playerBtnPrev}>
@@ -213,12 +220,12 @@ export const AudioPlayer : React.FC<Player> = ({tracks, currentTrack, setCurrent
                 </div>
                 <div className={styles.trackPlayAuthor}>
                   <a className={styles.trackPlayAuthorLink} href="http://">
-                    Ты та...
+                   {name}
                   </a>
                 </div>
                 <div className={styles.trackPlayAlbum}>
                   <a className={styles.trackPlayAlbumLink} href="http://">
-                    Баста
+                   {author}
                   </a>
                 </div>
               </div>
@@ -245,8 +252,6 @@ export const AudioPlayer : React.FC<Player> = ({tracks, currentTrack, setCurrent
             </div>
           </div>
           <VolumeBlock />
-        </div>
-      </div>
-    </div>
+    </>
   );
-}*/
+}

@@ -27,7 +27,7 @@ export default function TrackListTitle({tracks}:TrackListTitleProps) {
       </div>
     </div>
     <div className={styles.contentPlaylist}>
-    {tracks.map((track)=> <PlayList key={track.id} track={track} setCurrentTrack={Function} setCurrentTrackId={Function}/>)}
+    {tracks.map((track)=> <PlayList key={track.id} track={track}/>)}
     </div>
     </div>
   );
