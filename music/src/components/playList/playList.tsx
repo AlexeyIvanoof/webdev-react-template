@@ -48,6 +48,7 @@ export default function PlayList ({track, setCurrentTrack, setCurrentTrackId}:Pl
   );
 }
 */
+'use client'
 
 import { useCurrentTrack } from "@/context/CurrentTrackProvider";
 import styles from "./playList.module.css";

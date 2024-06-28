@@ -23,7 +23,7 @@ export const ProgressBar: React.FC<ProgressBar> = ({currentTime, duration, audio
     }
 
 	return (
-		<div className={styles.bar__player_progress}>
+		<div className={styles.barPlayerProgress}>
             <div className={styles.bar__currentTime}>
                 {formatSeconds(currentTime)} / {formatSeconds(duration)}
             </div>
