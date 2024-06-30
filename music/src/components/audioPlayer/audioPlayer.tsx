@@ -35,15 +35,26 @@ export default function AudioPlayer({name, author, setCurrentTrackId, currentTra
 
     // Функция для переключения следующего трека
   const handleEnded = () => {
-    // if (currentTrackId < tracks.length - 1) {
-    //   if (!isLoop) {
-    //     setCurrentTrackId(currentTrackId + 1);
-    //     setCurrentTrack(tracks[currentTrackId])
-    //   }
-    // } else {
-    //   setCurrentTrackId(0);
-    // }
+     if (currentTrackId < tracks.length - 1) {
+       if (!isLoop) {
+         setCurrentTrackId(currentTrackId - 1);
+         setCurrentTrack(tracks[currentTrackId])
+       }
+     } else {
+       setCurrentTrackId(0);
+     }
   }
+
+  /*const handleEnded = () => {
+    // Проверяем, не является ли текущий трек последним в плейлисте
+    if (currentTrackId < tracks.length - 1) {
+        // Переход к следующему треку
+        setCurrentTrackId(currentTrackId + 1);
+    } else {
+        // Или начинаем плейлист с начала
+        setCurrentTrackId(0);
+    }
+}*/
 
     // Функция зацикливания трека
     const toggleLoop = () => {
@@ -84,7 +95,8 @@ export default function AudioPlayer({name, author, setCurrentTrackId, currentTra
       audio?.addEventListener("ended", handleEnded);
       isPlaying ? audio?.play() : null;
       return () => audio?.removeEventListener("ended", handleEnded);
-    }, [currentTrackId, tracks, audio, isPlaying]) 
+    }, [currentTrackId, tracks, audio, isPlaying, handleEnded]) 
+
     useEffect(() => {
       const audio = audioRef.current;
       setIsPlaying(true);
