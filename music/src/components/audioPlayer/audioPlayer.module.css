@@ -15,6 +15,37 @@
   justify-content: flex-start;
 }
 
+.barContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.barPlayerProgress {
+  width: 100%;
+  height: 5px;
+  background: #2e2e2e;
+  margin-bottom: 10px;
+}
+
+.barPlayerBlock {
+  height: 73px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
 .barVolumeBlock {
   width: auto;
   display: -webkit-box;
@@ -250,4 +281,54 @@
   fill: #696969;
   stroke: #ffffff;
   cursor: pointer;
+}
+
+/* Стили для ползунка громкости*/
+
+.barVolumeBlock {
+  width: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 150px 0 0;
+  display: flex;
+  justify-content: end;
+}
+
+.volumeContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: end;
+}
+
+.volumeImage {
+  width: 13px;
+  height: 18px;
+  margin-right: 17px;
+}
+
+.volumeSvg {
+  width: 13px;
+  height: 18px;
+  fill: transparent;
+}
+
+.volumeProgress {
+  width: 109px;
+}
+
+.volumeProgressLine {
+  width: 109px;
 }

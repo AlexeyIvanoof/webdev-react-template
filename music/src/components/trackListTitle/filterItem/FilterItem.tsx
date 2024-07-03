@@ -5,28 +5,31 @@ type Props = {
     title: string;
     list: string[];
     isActive: boolean;
+    //changeFilter: (filterElement: string) => void;
     handleFilter: (filterName: string) => void;
     filterName: string;
     numberSelectedValues: number;
-    isOpen: boolean;
+    //filterElement: string;
+    //filterList: string[];
 }
 
-export function FilterItem ({title, list, isActive,  handleFilter, filterName, numberSelectedValues, isOpen}: Props) {
+export function FilterItem ({title, list, isActive, handleFilter, filterName, numberSelectedValues}: Props) {
 
 return(
 <div>
-     <div  onClick={() =>  handleFilter(filterName)} className={classNames(styles.filterButton, styles.btnText)}  >
-    {title}
-    </div>
-    {numberSelectedValues > 0 && (
+        <div className={styles.filetrBlock}>{numberSelectedValues > 0 && (
           <div className={styles.selectedFilterCount}>{numberSelectedValues}</div>
         )}
+     <div  onClick={() =>  handleFilter(filterName)} className={classNames(styles.filterButton, styles.btnText, {[styles.active]: isActive})}  >
+    {title}
+    </div>
+    </div>
 {isActive && (
         <ul className={styles.list}>
           {list.map((item, index) => (
-            <li className={classNames(styles.listItem, {[styles.active]:isOpen})}  key={index}>
-              {item}
-            </li>
+           <li className={classNames(styles.listItem)}  key={index}>
+           {item}
+         </li>
           ))}
         </ul>
 )}

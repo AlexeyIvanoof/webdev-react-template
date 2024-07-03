@@ -42,6 +42,19 @@ type FilterProps = {
 }
 
 export default function Filter({tracks}:FilterProps) {
+
+const activeAuthors: never[] = [];
+const activeGenres: never[] = [];
+const onChangeFilterList = (filterList: string[], filterElement: string) => {
+  if (filterList.includes(filterElement)) {
+    // Если такое название (filterElement) уже существует в массиве, то удаляем его из filterList
+    filterList = filterList.filter(item => item !== filterElement);
+  } else {
+    // Если нет, то пушим название фильтра в нужный массив
+    filterList.push(filterElement);
+  }
+}
+
 const getUniqueAuthors = getUniqueValues(tracks, "author")
 const getUniqueGenres = getUniqueValues(tracks, "genre")
 const [activeFilter, setActiveFilter] =  useState<string | null>(null);
@@ -56,21 +69,24 @@ setActiveFilter((prev) => (prev === filterName ? null : filterName))
       list={getUniqueAuthors}
       handleFilter={handleFilter}
       isActive={activeFilter === "исполнителю"}
-      filterName={"исполнителю"} numberSelectedValues={0}/>
+      filterName={"исполнителю"}
+      numberSelectedValues={getUniqueAuthors.length}/>
 
       <FilterItem 
        title={"жанру"} 
        list={getUniqueGenres} 
        handleFilter = {handleFilter} 
        isActive = {activeFilter === "жанру"} 
-       filterName={"жанру"}/>
+       filterName={"жанру"}
+       numberSelectedValues={getUniqueGenres.length}/>
 
       <FilterItem 
        title={"году выпуска"} 
        list={SORT_OPTIONS} 
        handleFilter = {handleFilter} 
        isActive = {activeFilter === "году выпуска"} 
-       filterName={"году выпуска"}/>
+       filterName={"году выпуска"}
+       numberSelectedValues={SORT_OPTIONS.length}/>
     </div>
   );
 }

@@ -12,6 +12,12 @@
     margin-right: 10px;
   }
 
+.filterButton.active{
+  border-color: #d9b6ff;
+  color: #d9b6ff;
+  cursor: pointer;
+}
+
   .btnText:hover {
     border-color: #d9b6ff;
     color: #d9b6ff;
@@ -29,13 +35,14 @@
     background-color: rgb(49, 49, 49);
     position: absolute;
     width: 248px;
-    height: auto;
+    max-height: 450px;
     border-radius: 12px;
     text-align: center;
     padding: 25px;
     display: flex;
     flex-direction: column;
     gap: 28px;
+    overflow-y: scroll;
   }
 
   .listItem {
@@ -62,14 +69,19 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: -8px;
-  top: -8px;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: 13px;
+  top: -10px;
   }
   .active{
     color: rgb(173, 97, 255);
     text-decoration: underline;
+  }
+
+  .filetrBlock{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
   }
