@@ -332,3 +332,8 @@
 .volumeProgressLine {
   width: 109px;
 }
+
+.active {
+  fill: #ffffff;
+  stroke: #ffffff;
+}

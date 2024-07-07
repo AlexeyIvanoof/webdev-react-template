@@ -1,19 +1,28 @@
-/*import styles from "./playList.module.css";
+
+/*'use client'
+
+import { useCurrentTrack } from "@/context/CurrentTrackProvider";
+import styles from "./playList.module.css";
 import { TrackType } from "@/types/types";
 import { formatTime } from "@/types/types";
 
 type PlayListProps = {
   track: TrackType
-  setCurrentTrack: Function;
-  setCurrentTrackId: Function;
+  pointPlaying : boolean;
+ 
 }
 
-export default function PlayList ({track, setCurrentTrack, setCurrentTrackId}:PlayListProps) {
+export default function PlayList ({track}:PlayListProps) {
+  const{setCurrentTrack} = useCurrentTrack();
   const{name, author, album, duration_in_seconds} = track
+
+  const handleTrackClick = () => {
+    setCurrentTrack(track)
+  }
   
   return (
    
-      <div  onClick={() => {setCurrentTrack(track); setCurrentTrackId(track.id)}} className={styles.playlistItem}>
+      <div onClick={handleTrackClick} className={styles.playlistItem}>
         <div className={styles.playlistTrack}>
           <div className={styles.trackTitle}>
             <div className={styles.trackTitleImage}>
@@ -46,27 +55,33 @@ export default function PlayList ({track, setCurrentTrack, setCurrentTrackId}:Pl
         </div>
       </div>
   );
-}
-*/
+}*/
+
+
 'use client'
 
-import { useCurrentTrack } from "@/context/CurrentTrackProvider";
 import styles from "./playList.module.css";
 import { TrackType } from "@/types/types";
 import { formatTime } from "@/types/types";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { setCurrentTrack } from "@/store/features/track";
 
 type PlayListProps = {
   track: TrackType
+  tracks: TrackType[]
+  pointPlaying : boolean;
  
 }
 
-export default function PlayList ({track}:PlayListProps) {
-  const{setCurrentTrack} = useCurrentTrack();
-  const{name, author, album, duration_in_seconds} = track
+export default function PlayList ({track,  tracks}:PlayListProps) {
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  const{id, name, author, album, duration_in_seconds} = track
+  const dispatch = useAppDispatch();
+  const isPlaying = useAppSelector((state)=> state.playlist.isPlaying);
 
   const handleTrackClick = () => {
-    setCurrentTrack(track)
-  }
+    dispatch(setCurrentTrack({ track, tracks }));
+  };
   
   return (
    
@@ -74,9 +89,17 @@ export default function PlayList ({track}:PlayListProps) {
         <div className={styles.playlistTrack}>
           <div className={styles.trackTitle}>
             <div className={styles.trackTitleImage}>
+            {currentTrack?.id === id ? (
+                isPlaying ? (
+                  <svg className={styles.playingDot}></svg>
+                ) : (
+                  <svg className={styles.pauseDot}></svg>
+                )
+              ) : (
               <svg className={styles.trackTitleSvg}>
                 <use xlinkHref="/sprite.svg#icon-note"></use>
               </svg>
+              )}
             </div>
             <div>
             <a className={styles.trackTitleLink}>
