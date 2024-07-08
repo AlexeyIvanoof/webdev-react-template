@@ -67,10 +67,8 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setCurrentTrack } from "@/store/features/track";
 
 type PlayListProps = {
-  track: TrackType
-  tracks: TrackType[]
-  pointPlaying : boolean;
- 
+  track: TrackType,
+  tracks: TrackType[], 
 }
 
 export default function PlayList ({track,  tracks}:PlayListProps) {
@@ -81,6 +79,7 @@ export default function PlayList ({track,  tracks}:PlayListProps) {
 
   const handleTrackClick = () => {
     dispatch(setCurrentTrack({ track, tracks }));
+    console.log()
   };
   
   return (

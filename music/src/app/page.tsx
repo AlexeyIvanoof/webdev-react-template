@@ -4,7 +4,8 @@ import NawMenu from "@/components/navMenu/navMenu";
 import Centerblock from "@/components/centerblock/centerBlock";
 import React from "react";
 import { CurrentTrackProvider} from "@/context/CurrentTrackProvider";
-import Bar from "@/components/bar/Bar";
+//import Bar from "@/components/bar/Bar";
+import AudioPlayer from "@/components/audioPlayer/AudioPlayer";
 
 export default function Home() {
   return (
@@ -17,7 +18,7 @@ export default function Home() {
         <Centerblock/>
          <Sidebar/>
         </main>
-        <Bar/>
+        <AudioPlayer/>
         </CurrentTrackProvider>
         <footer className={styles.footer}></footer>
       </div>

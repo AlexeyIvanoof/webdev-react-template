@@ -1,19 +1,19 @@
 'use client'
-import { useCurrentTrack } from "@/context/CurrentTrackProvider";
 import AudioPlayer from "../audioPlayer/AudioPlayer";
 import styles from "./Bar.module.css"
+import { useAppSelector } from "@/hooks";
 
 
 export default function Bar() {
-    const {currentTrack} = useCurrentTrack();
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
     if(!currentTrack){
       return null
     }
-      const {name, author} = currentTrack;
+      //const {name, author} = currentTrack;
 
     return (
       <div className={styles.bar}>
-           <AudioPlayer name={name} author={author} tracks={[]} currentTrackId={0} setCurrentTrackId={Function}/>
+           <AudioPlayer/>
       </div>
 
     );

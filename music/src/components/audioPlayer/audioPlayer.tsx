@@ -252,15 +252,15 @@ export default function AudioPlayer() {
 
     // Функция для воспроизведения и паузы
     const togglePlay = () => {
-      if (audio) {
-        if (isPlaying) {
-          audio.pause();
-        } else {
-          audio.play();
-        }
+      if (audioRef.current) {
+        dispatch(setIsPlaying(!isPlaying));
       }
-      setIsPlaying(!isPlaying);
-    }
+    };
+    useEffect(()=>{
+      if(isPlaying){
+        audioRef.current?.play();
+      } else {audioRef.current?.pause()}
+    }, [isPlaying]);
     
 
     useEffect(() => {
@@ -282,6 +282,7 @@ useEffect(() => {
     return (
       <>
       {currentTrack && (
+         <div className={styles.bar}>
       <div className={styles.barContent}>
          <audio
         ref={audioRef}
@@ -380,6 +381,7 @@ useEffect(() => {
     </div>
 
           </div>
+        </div>
         </div>
                     )}
                     </>

@@ -31,6 +31,7 @@ const initialState: PlaylistStateType = {
   filteredTracks: [],
 };
 
+
 const playlistSlice = createSlice({
   name: "playlist",
   initialState,
@@ -41,15 +42,15 @@ const playlistSlice = createSlice({
     ) => {
       state.currentTrack = action.payload.track;
       state.currentPlaylist = action.payload.tracks;
-      state.shuffledPlaylist = [...action.payload.tracks].sort(
-        () => 0.5 - Math.random()
-      );
+      state.shuffledPlaylist = action.payload.tracks,
       state.isPlaying = true;
+      console.log(action.payload)
     },
     setDefaultPlaylist: (state, action: PayloadAction<TrackType[]>) => {
       state.defaultPlaylist = action.payload;
       state.filteredTracks = action.payload;
     },
+
     setPrevTrack: (state) => {
       const playlist = state.isShuffled
         ? state.shuffledPlaylist
