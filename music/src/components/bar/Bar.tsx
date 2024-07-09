@@ -9,7 +9,7 @@ export default function Bar() {
     if(!currentTrack){
       return null
     }
-      //const {name, author} = currentTrack;
+    
 
     return (
       <div className={styles.bar}>

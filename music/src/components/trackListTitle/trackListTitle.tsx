@@ -3,11 +3,8 @@ import PlayList from "../playList/playList";
 import styles from "./trackListTitle.module.css";
 import classNames from "classnames";
 
-type TrackListTitleProps = {
-  tracks: TrackType[]
-}
 
-export default function TrackListTitle({tracks}:TrackListTitleProps) {
+export default function TrackListTitle({ tracks, playlist }: { tracks: TrackType[]; playlist: TrackType[]}) {
   return (
     <div className={styles.centerblockContent}>
     <div className={styles.contentTitle}>
@@ -27,7 +24,7 @@ export default function TrackListTitle({tracks}:TrackListTitleProps) {
       </div>
     </div>
     <div className={styles.contentPlaylist}>
-    {tracks.map((track)=> <PlayList key={track.id} track={track}/>)}
+    {tracks.map((track)=> <PlayList key={track.id} track={track} tracks={tracks} />)}
     </div>
     </div>
   );
