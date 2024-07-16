@@ -6,6 +6,7 @@ import { TrackType } from "@/types/types";
 import { formatTime } from "@/types/types";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setCurrentTrack } from "@/store/features/track";
+import useLikeTrack from "@/utils/useLikeTrack";
 
 type PlayListProps = {
   track: TrackType,
@@ -18,6 +19,8 @@ export default function PlayList ({track,  tracks}:PlayListProps) {
   const dispatch = useAppDispatch();
   const isPlaying = useAppSelector((state)=> state.playlist.isPlaying);
 
+  const {isLiked, handleLike}= useLikeTrack(track.id)
+  
   const handleTrackClick = () => {
     dispatch(setCurrentTrack({ track, tracks }));
     console.log()
@@ -57,10 +60,17 @@ export default function PlayList ({track,  tracks}:PlayListProps) {
              {album}
             </a>
           </div>
-          <div>
-            <svg className={styles.trackTimeSvg}>
+          <div onClick={handleLike}>
+            {isLiked ? (
+              <svg className={styles.trackTimeSvg}>
               <use xlinkHref="/sprite.svg#icon-like"></use>
             </svg>
+             ):(
+              <svg className={styles.trackTimeSvg}>
+              <use  xlinkHref="/sprite.svg#icon-dislike"></use>
+            </svg>
+             )}
+           
             <span className={styles.trackTimeText}>{formatTime(duration_in_seconds)}</span>
           </div>
         </div>
