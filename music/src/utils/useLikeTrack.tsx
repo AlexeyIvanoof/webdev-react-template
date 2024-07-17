@@ -5,7 +5,7 @@ import { setDisLikeTrack, setLikeTrack } from "@/store/features/track";
 
 const useLikeTrack = (trackId: number) =>{
 
-const dispath = useAppDispatch;
+const dispath = useAppDispatch();
 
 const tokens = {
     access: "",

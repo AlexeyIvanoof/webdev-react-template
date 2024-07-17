@@ -1,3 +1,4 @@
+import { SinginFormType } from "@/types/types";
 import { fetchWithAuth } from "@/utils/fetchWithAuth";
 
 const API_URL = "https://skypro-music-api.skyeng.tech/"
@@ -49,7 +50,7 @@ export async function GetAllTracks() {
   }
   
   
-  export async function LoginApi(email:string, password:string) {
+  export async function LoginApi({email, password}:SinginFormType) {
     return fetch( API_URL+ `user/login/`,{
       method: "POST",
       body: JSON.stringify({
@@ -80,6 +81,29 @@ export async function GetAllTracks() {
         return response.json();
       });
   }
+
+
+  export const fetchTokens = async ({ email, password }: SinginFormType) => {
+    try {
+      const response = await fetch(
+        API_URL+ `user/token/`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const responseData = await response.json();
+      return responseData;
+    } catch (error) {
+      throw new Error("Ошибка" + error);
+    }
+  };
 
 
   export async function likeTrack({
