@@ -120,7 +120,7 @@
     height: 52px;
     background-color: #580ea2;
     border-radius: 6px;
-    margin-top: 60px;
+    margin-top: 30px;
     margin-bottom: 20px;
     border: none;
     display: -webkit-box;
@@ -199,4 +199,10 @@
 
 .login {
     margin-bottom: 30px;
+}
+
+.Error{
+    color: coral;
+    font-weight: 400;
+    text-align: left;
 }

@@ -30,7 +30,6 @@
 
 .modalFormLogin {
     width: 366px;
-    height: 439px;
     background-color: #FFFFFF;
     border-radius: 12px;
     display: -webkit-box;
@@ -147,3 +146,10 @@
     -ms-flex-pack: center;
     justify-content: center;
 }
+
+.Error{
+    color: coral;
+    font-weight: 400;
+    text-align: left;
+}
+

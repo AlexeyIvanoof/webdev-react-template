@@ -79,11 +79,11 @@ export default function SignupPage() {
         } else {
           try {
              await RegistrationApi(email, password);
-            navigate.push("/login");
-          } catch (currentError) {
-            console.log(error);
+            navigate.push("/signin");
+          } catch (error) {
+            setError(error.message);
           } finally {
-           
+            setIsSubmitting(false);
           }
         }
       };
@@ -117,7 +117,7 @@ export default function SignupPage() {
               className={classNames(styles.modalInput, styles.login)}
               type="text"
               name="email"
-              placeholder="Почта"
+              placeholder ="Почта"    
               value={email}
               onChange={handleInputChange}
             />
@@ -137,14 +137,14 @@ export default function SignupPage() {
               value={repeatPassword}
               onChange={handleInputChange}
             />
-             {error && <div className={styles.registrError}>{error}</div>}
+              {error && <div className={styles.Error}>{error}</div>}
             <button
               type={"submit"}
                className={styles.modalBtnSignupEnt}
                onClick={handleRegister}
                disabled={isSubmitting}
                >
-              <Link  href={"/signin"}>Зарегистрироваться</Link>
+              <Link  href={""}>Зарегистрироваться</Link>
             </button>
           </form>
         </div>

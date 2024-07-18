@@ -10,10 +10,12 @@ import { useAppDispatch } from "@/hooks";
 import { getTokens, getUser } from "@/store/features/authSlice";
 
 export default function SigninPage() {
-  const router=useRouter();
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState(null|| String);
 
+  
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => {
@@ -32,8 +34,8 @@ export default function SigninPage() {
         dispatch(getUser(formData)).unwrap(),
       ]);
       router.push('/');
-    } catch (error) {
-      throw new Error("Ошибка" + error);
+    }  catch (error) {
+      setError(error.message);
     }
   };
 
@@ -61,15 +63,16 @@ export default function SigninPage() {
               onChange={handleChange}
             />
             <input
-              className={styles.modalInput}
+             className={classNames(styles.modalInput, styles.login)}
               type="password"
               name="password"
               placeholder="Пароль"
               value={formData.password}
               onChange={handleChange}
             />
+            {error && <div className={styles.Error}>{error}</div>}
             <button  onClick={handleSubmit} className={styles.modalBtnEnter}>
-              <Link href="/">Войти</Link>
+              <Link href="">Войти</Link>
             </button>
             <button className={styles.modalBtnSignup}>
             <Link href={"/signup"}>Зарегестироваться</Link>

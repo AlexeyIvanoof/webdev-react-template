@@ -1,16 +1,18 @@
 import styles from "./sidebar.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Sidebar() {
   return (
     <div className={styles.mainSidebar}>
       <div className={styles.sidebarPersonal}>
         <p className={styles.sidebarPersonalName}>Sergey.Ivanov</p>
-        <div className={styles.sidebarIcon}>
+        <Link href={"/signin"}> <div className={styles.sidebarIcon}>
           <svg>
             <use xlinkHref="/sprite.svg#logout"></use>
           </svg>
         </div>
+        </Link>
       </div>
       <div className={styles.sidebarBlock}>
         <div className={styles.sidebarlist}>
