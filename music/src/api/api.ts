@@ -105,6 +105,27 @@ export async function GetAllTracks() {
     }
   };
 
+  export const refreshToken = async (refresh: string) => {
+    try {
+      const response = await fetch(
+        API_URL+ `token/refresh/`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            refresh: refresh
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const responseData = await response.json();
+      return responseData;
+    } catch (error) {
+      throw new Error("Ошибка" + error);
+    }
+  };
+
 
   export async function likeTrack({
     trackId,
