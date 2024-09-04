@@ -136,6 +136,7 @@ export async function GetAllTracks() {
     access: string;
     refresh: string;
   }) {
+    try {
     const res = await fetchWithAuth(
       API_URL + `track/${trackId}/favorite/`,
       {
@@ -147,7 +148,9 @@ export async function GetAllTracks() {
       refresh
     );
     return res.json();
-  
+    } catch (error) {
+      throw new Error("Ошибка" + error);
+    }
   }
 
 
@@ -160,6 +163,7 @@ export async function GetAllTracks() {
     access: string;
     refresh: string;
   }) {
+    try {
     const res = await fetchWithAuth(
       API_URL + `track/${trackId}/favorite/`,
       {
@@ -171,6 +175,9 @@ export async function GetAllTracks() {
       refresh
     );
     return res.json();
+  } catch (error) {
+    throw new Error("Ошибка" + error);
+  }
   }
 
 
