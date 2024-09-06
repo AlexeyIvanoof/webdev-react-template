@@ -18,7 +18,7 @@ export async function GetAllTracks() {
   }
 
 
-  export async function RegistrationApi(email:string, password:string) {
+  export async function RegistrationApi({email, password}:SinginFormType) {
     return fetch( API_URL+ `user/signup/`, {
       method: "POST",
       body: JSON.stringify({

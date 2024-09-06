@@ -10,7 +10,7 @@ import { setDefaultPlaylist } from "@/store/features/track";
 import Error from "@/app/error";
 
 
-export default function Tracks() {
+export default function Tracks({props}) {
   const dispatch = useAppDispatch();
   const filteredTracks = useAppSelector(
     (state) => state.playlist.filteredTracks
@@ -30,7 +30,7 @@ export default function Tracks() {
 
     return (
     <>
-         <h2 className={styles.centerblockH2}>Треки</h2>
+         <h2 className={styles.centerblockH2}>{props}</h2>
           <Filter  tracks={filteredTracks}/>
           <TrackListTitle  tracks={filteredTracks} playlist={tracks}/>
     </>

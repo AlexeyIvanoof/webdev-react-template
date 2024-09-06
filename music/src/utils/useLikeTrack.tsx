@@ -7,10 +7,11 @@ const useLikeTrack = (trackId: number) =>{
 
 const dispatch = useAppDispatch();
 
-const tokens = {
-    access: "",
-    refresh: "",
-}
+const tokens =  useAppSelector(state => state.auth.tokens);
+/*const tokens = {
+  access: null,
+  refresh: null,
+}*/
 const likedTracks = useAppSelector(state => state.playlist.favoriteTracksList);
 
 const isLiked = !!likedTracks.find((track) => track.id === trackId);

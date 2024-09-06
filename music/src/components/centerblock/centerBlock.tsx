@@ -7,7 +7,7 @@ export default function Centerblock() {
     return (
         <div className={styles.mainCenterblock}>
         <CenterblockSearch/>
-         <Tracks/>
+         <Tracks props="Треки"/>
        </div>
     )
 }
