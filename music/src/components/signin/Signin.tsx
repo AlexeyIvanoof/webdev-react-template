@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./signin.module.css";
 import classNames from "classnames";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/hooks";
 import { getTokens, getUser } from "@/store/features/authSlice";
@@ -38,6 +38,15 @@ export default function SigninPage() {
       setError(error.message);
     }
   };
+
+  useEffect( ()=> {
+    dispatch(
+      getTokens({
+        email:"email",
+        password:"password"
+      })
+    )
+    } ,[])
 
   return (
     <div className={styles.wrapper}>

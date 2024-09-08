@@ -4,6 +4,7 @@ import Image from "next/image";
 import classNames from "classnames";
 import styles from "./navMenu.module.css";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function NawMenu() {
   const [visible, setVisible] = useState(false);
@@ -29,19 +30,19 @@ export default function NawMenu() {
       <div className={styles.navMenu}>
         <ul className={styles.menuList}>
           <li className={styles.menuItem}>
-            <a href="#" className={styles.menuLink}>
+          <Link href={"/"} className={styles.menuLink}>
               Главное
-            </a>
+              </Link>
           </li>
           <li className={styles.menuItem}>
-            <a href="#" className={styles.menuLink}>
-              Мой плейлист
-            </a>
+            <Link href={"/myTrack"} className={styles.menuLink}>
+            Мой плейлист
+            </Link> 
           </li>
           <li className={styles.menuItem}>
-            <a href="../signin.html" className={styles.menuLink}>
+          <Link href={"/signin"} className={styles.menuLink}>
               Войти
-            </a>
+            </Link> 
           </li>
         </ul>
       </div>

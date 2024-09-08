@@ -1,26 +1,7 @@
-import styles from "./page.module.css";
-import Sidebar from "@/components/sidebar/sidebar";
-import NawMenu from "@/components/navMenu/navMenu";
-import Centerblock from "@/components/centerblock/centerBlock";
-import React from "react";
-import AudioPlayer from "@/components/audioPlayer/AudioPlayer";
+import MyTrackPage from "@/components/myTrack/myTrack";
 
-export default function Home() {
+export default function MyTrack() {
   return (
-    <body>
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
-       
-        <main className={styles.main}>
-         <NawMenu/>
-        <Centerblock/>
-         <Sidebar/>
-        </main>
-        <AudioPlayer/>
-       
-        <footer className={styles.footer}></footer>
-      </div>
-    </div>
-    </body>
+   <MyTrackPage/>
   );
 }

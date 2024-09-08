@@ -7,11 +7,9 @@ const useLikeTrack = (trackId: number) =>{
 
 const dispatch = useAppDispatch();
 
+
 const tokens =  useAppSelector(state => state.auth.tokens);
-/*const tokens = {
-  access: null,
-  refresh: null,
-}*/
+
 const likedTracks = useAppSelector(state => state.playlist.favoriteTracksList);
 
 const isLiked = !!likedTracks.find((track) => track.id === trackId);
@@ -52,38 +50,3 @@ const handleLike = async (e: React.MouseEvent) => {
 };
 
 export default useLikeTrack;
-
-
-/*const handleLike = async (e: React.MouseEvent) =>{
-    e.stopPropagation();
-    if(!tokens.access || tokens.refresh)
-         return alert ("Вы не авторизованны!")
-
-        const action = isLiked ?  dislikeTrack : likeTrack; 
-
-        try { 
-            await action({
-                trackId: trackId,
-                access: tokens.access,
-                refresh: tokens.refresh
-            })
-
-            if(isLiked){
-                dispath(setDisLikeTrack(trackId))
-            }else{
-                dispath(setLikeTrack(trackId))
-            }
-            
-        } catch (error) {
-            //обработать 401 ошибку
-            //Нужно обработать ошибки протухшего токена и вызывать его обновление, а после этого выполнить запрос заново с обновленным токеном
-           console.error(error);
-        }
-};
-
-    
-
-return {handleLike, isLiked}
-};
-
-export default useLikeTrack*/
