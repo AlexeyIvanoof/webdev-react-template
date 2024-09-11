@@ -39,14 +39,14 @@ export default function SigninPage() {
     }
   };
 
-  useEffect( ()=> {
+ /* useEffect( ()=> {
     dispatch(
       getTokens({
         email:"email",
         password:"password"
       })
     )
-    } ,[])
+    } ,[])*/
 
   return (
     <div className={styles.wrapper}>

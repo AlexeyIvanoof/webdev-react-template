@@ -15,11 +15,11 @@ type PlayListProps = {
 
 export default function PlayList ({track,  tracks}:PlayListProps) {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
-  const{id, name, author, album, duration_in_seconds} = track
+  const{_id, name, author, album, duration_in_seconds} = track
   const dispatch = useAppDispatch();
   const isPlaying = useAppSelector((state)=> state.playlist.isPlaying);
 
-  const {isLiked, handleLike}= useLikeTrack(track.id)
+  const {isLiked, handleLike}= useLikeTrack(track._id)
   
   const handleTrackClick = () => {
     dispatch(setCurrentTrack({ track, tracks }));
@@ -32,7 +32,7 @@ export default function PlayList ({track,  tracks}:PlayListProps) {
         <div className={styles.playlistTrack}>
           <div className={styles.trackTitle}>
             <div className={styles.trackTitleImage}>
-            {currentTrack?.id === id ? (
+            {currentTrack?._id === _id ? (
                 isPlaying ? (
                   <svg className={styles.playingDot}></svg>
                 ) : (

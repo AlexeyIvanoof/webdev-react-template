@@ -1,7 +1,7 @@
 import { SinginFormType } from "@/types/types";
 import { fetchWithAuth } from "@/utils/fetchWithAuth";
 
-const API_URL = "https://skypro-music-api.skyeng.tech/"
+const API_URL = "https://webdev-music-003b5b991590.herokuapp.com/"
 
 export async function GetAllTracks() {
     const response = await fetch(
@@ -14,7 +14,7 @@ export async function GetAllTracks() {
       throw new Error("Ошибка сервера");
     }
     const data = await response.json();
-    return data;
+    return data.data;
   }
 
 
@@ -138,7 +138,7 @@ export async function GetAllTracks() {
   }) {
     try {
     const res = await fetchWithAuth(
-      API_URL + `track/${trackId}/favorite/`,
+      API_URL + `catalog/track/${trackId}/favorite/`,
       {
         method: "POST",
         headers: {
@@ -165,7 +165,7 @@ export async function GetAllTracks() {
   }) {
     try {
     const res = await fetchWithAuth(
-      API_URL + `track/${trackId}/favorite/`,
+      API_URL + `catalog/track/${trackId}/favorite/`,
       {
         method: "DELETE",
         headers: {

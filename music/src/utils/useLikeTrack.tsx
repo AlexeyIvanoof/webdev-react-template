@@ -12,8 +12,8 @@ const tokens =  useAppSelector(state => state.auth.tokens);
 
 const likedTracks = useAppSelector(state => state.playlist.favoriteTracksList);
 
-const isLiked = !!likedTracks.find((track) => track.id === trackId);
-
+const isLiked = !!likedTracks.find((id) => id === trackId);
+console.log(likedTracks)
 const handleLike = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!tokens.access || !tokens.refresh) {

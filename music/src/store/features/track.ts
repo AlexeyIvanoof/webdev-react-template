@@ -18,7 +18,7 @@ type PlaylistStateType = {
   defaultPlaylist: TrackType[];
   currentTrack: null | TrackType;
   currentPlaylist: TrackType[];
-  favoriteTracksList:TrackType[]; 
+  favoriteTracksList:number[]; 
   shuffledPlaylist: TrackType[];
   isPlaying: boolean;
   isShuffled: boolean;
@@ -74,7 +74,7 @@ const playlistSlice = createSlice({
         ? state.shuffledPlaylist
         : state.currentPlaylist;
       const currentTrackIndex = playlist.findIndex(
-        (track) => track.id === state.currentTrack?.id
+        (track) => track._id === state.currentTrack?._id
       );
       const newTrack = playlist[currentTrackIndex - 1];
       if (newTrack) {
@@ -87,7 +87,7 @@ const playlistSlice = createSlice({
         ? state.shuffledPlaylist
         : state.currentPlaylist;
       const currentTrackIndex = playlist.findIndex(
-        (track) => track.id === state.currentTrack?.id
+        (track) => track._id === state.currentTrack?._id
       );
       const newTrack = playlist[currentTrackIndex + 1];
       if (newTrack) {
@@ -119,15 +119,16 @@ const playlistSlice = createSlice({
    setLikeTrack: (state, action: PayloadAction<number>) => {
     const trackId = action.payload;
     //добавить трек в favoriteTracksList
-    const trackToAdd = state.favoriteTracksList.find((track) => track.id === trackId);
+   /* const trackToAdd = state.favoriteTracksList.find((track) => track._id === trackId);
     if (trackToAdd) {
       state.favoriteTracksList.push(trackToAdd);
-    }
+    }*/
+    state.favoriteTracksList.push(trackId);
   },
    setDisLikeTrack: (state, action: PayloadAction<number>) => {
     const trackId = action.payload;
     //убрать трек из favoriteTracksList
-    state.favoriteTracksList = state.favoriteTracksList.filter((track) => track.id !== trackId);
+    state.favoriteTracksList = state.favoriteTracksList.filter((id) => id !== trackId);
   },
 
     setFilters: (

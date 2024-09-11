@@ -9,28 +9,18 @@ import { useEffect, useState } from "react";
 import { setDefaultPlaylist } from "@/store/features/track";
 import Error from "@/app/error";
 
+type TrackTypeProp = {
+  filteredTracks: TrackType[];
+  tracks: TrackType[];
+  title: string
+}
 
-export default function Tracks() {
-  const dispatch = useAppDispatch();
-  const filteredTracks = useAppSelector(
-    (state) => state.playlist.filteredTracks
-  );
-  const [tracks, setTracks] = useState<TrackType[]>([]);
 
-  useEffect(() => {
-    GetAllTracks()
-      .then((tracksData) => {
-        dispatch(setDefaultPlaylist(tracksData));
-        setTracks(tracksData);
-      })
-      .catch((error) => {
-        return <Error error={error} reset={() => {}} />;
-      });
-  }, [dispatch]);
-
+export default function Tracks({filteredTracks, tracks, title}: TrackTypeProp) {
+ 
     return (
     <>
-         <h2 className={styles.centerblockH2}>Треки</h2>
+         <h2 className={styles.centerblockH2}>{title}</h2>
           <Filter  tracks={filteredTracks}/>
           <TrackListTitle  tracks={filteredTracks} playlist={tracks}/>
     </>

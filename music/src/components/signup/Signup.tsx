@@ -78,9 +78,10 @@ export default function SignupPage() {
           setError("Пароли не совпадают");
         } else {
           try {
-             await RegistrationApi(email, password);
+             await RegistrationApi({email, password});
             navigate.push("/signin");
           } catch (error) {
+            if(error instanceof Error)
             setError(error.message);
           } finally {
             setIsSubmitting(false);

@@ -24,7 +24,7 @@ export default function TrackListTitle({ tracks, playlist }: { tracks: TrackType
       </div>
     </div>
     <div className={styles.contentPlaylist}>
-    {tracks.map((track)=> <PlayList key={track.id} track={track} tracks={tracks} />)}
+    {tracks.map((track)=> <PlayList key={track._id} track={track} tracks={tracks} />)}
     </div>
     </div>
   );
