@@ -3,9 +3,6 @@ import NawMenu from "@/components/navMenu/navMenu";
 import Sidebar from "@/components/sidebar/sidebar";
 import styles from "./page.module.css";
 
-
-
-
 export default function RootLayout({
     children,
   }: Readonly<{children: React.ReactNode;}>) {

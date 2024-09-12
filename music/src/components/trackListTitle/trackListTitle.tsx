@@ -4,7 +4,7 @@ import styles from "./trackListTitle.module.css";
 import classNames from "classnames";
 
 
-export default function TrackListTitle({ tracks, playlist }: { tracks: TrackType[]; playlist: TrackType[]}) {
+export default function TrackListTitle({ tracks }: { tracks: TrackType[]}) {
   return (
     <div className={styles.centerblockContent}>
     <div className={styles.contentTitle}>

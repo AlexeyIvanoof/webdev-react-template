@@ -188,7 +188,7 @@ export async function GetAllTracks() {
     access: string; refresh: string
   }) {
     const res = await fetchWithAuth(
-      API_URL + `track/favorite/all`,
+      API_URL + `catalog/track/favorite/all`,
       {
         method: "GET",
         headers: {
