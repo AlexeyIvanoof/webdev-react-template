@@ -35,7 +35,7 @@ export default function NawMenu() {
               </Link>
           </li>
           <li className={styles.menuItem}>
-            <Link href={"/myTrack"} className={styles.menuLink}>
+            <Link href={"/tracks/myTrack"} className={styles.menuLink}>
             Мой плейлист
             </Link> 
           </li>
