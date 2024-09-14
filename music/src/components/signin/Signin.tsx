@@ -84,7 +84,7 @@ export default function SigninPage() {
               <Link href="">Войти</Link>
             </button>
             <button className={styles.modalBtnSignup}>
-            <Link href={"/signup"}>Зарегестироваться</Link>
+            <Link href={"/signup"}>Зарегистрироваться</Link>
             </button>
           </form>
         </div>

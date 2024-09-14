@@ -39,5 +39,5 @@ export type StaredUserType = {
 
   export type Tokens={
     access:string | null,
-    refresh: string | null,
+    refresh: string,
   }

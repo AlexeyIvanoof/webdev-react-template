@@ -112,7 +112,7 @@ export async function GetAllTracks() {
         {
           method: "POST",
           body: JSON.stringify({
-            refresh: refresh
+            refresh: refresh 
           }),
           headers: {
             "Content-Type": "application/json",
@@ -185,7 +185,7 @@ export async function GetAllTracks() {
   export async function fetchFavoriteTracks({
     access, refresh
   }:{
-    access: string; refresh: string
+    access: string | null ; refresh: string;
   }) {
     const res = await fetchWithAuth(
       API_URL + `catalog/track/favorite/all`,

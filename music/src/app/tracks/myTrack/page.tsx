@@ -11,6 +11,7 @@ import Tracks from "@/components/tracks/Track";
 
 
 export default function MyTracksPage () {
+const tokens =  useAppSelector(state => state.auth.tokens);
     const dispatch = useAppDispatch();
     const filteredTracks = useAppSelector(
       (state) => state.playlist.filteredTracks
@@ -18,7 +19,7 @@ export default function MyTracksPage () {
     const [tracks, setTracks] = useState<TrackType[]>([]);
   
     useEffect(() => {
-        fetchFavoriteTracks({access: 'access', refresh: 'refresh'})
+        fetchFavoriteTracks({access: tokens.access, refresh: tokens.refresh,})
         .then((tracksData) => {
           dispatch( setLikeTrack(tracksData));
           setTracks(tracksData);
@@ -26,7 +27,7 @@ export default function MyTracksPage () {
         .catch((error) => {
           return <Error error={error} reset={() => {}} />;
         });
-    }, [dispatch]);
+    }, [dispatch, tokens.access, tokens.refresh]);
   
 
     return(
