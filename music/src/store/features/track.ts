@@ -161,7 +161,7 @@ const playlistSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(getFavoriteTracks.fulfilled,(state, action) =>{
-      state.favoriteTracksList = action.payload
+      state.favoriteTracksList = action.payload.data;
     })
   },
 });

@@ -23,7 +23,6 @@ export default function RootLayout({
          <div className={styles.wrapper}>
          <div className={styles.container}>
          {children}
-        <AudioPlayer/>
         <footer className={styles.footer}></footer>
       </div>
     </div>
