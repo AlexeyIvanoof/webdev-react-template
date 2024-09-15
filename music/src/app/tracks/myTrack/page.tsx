@@ -46,7 +46,7 @@ import CenterblockSearch from "@/components/centerBlockSesrch/centerBlockSearch"
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useEffect, useState } from "react";
 import Tracks from "@/components/tracks/Track";
-import { getFavoriteTracks } from "@/store/features/track";
+import { getFavoriteTracks, setDefaultPlaylist } from "@/store/features/track";
 import { TrackType } from "@/types/types";
 
 
@@ -65,8 +65,11 @@ const tokens =  useAppSelector(state => state.auth.tokens);
     );
    
     useEffect(() => {
-       dispatch(getFavoriteTracks({access: tokens.access, refresh: tokens.refresh,}))
-    }, [dispatch, tokens.access, tokens.refresh])
+       getFavoriteTracks({access: tokens.access, refresh: tokens.refresh,})
+      
+       dispatch(setDefaultPlaylist(tracks));
+       
+    }, [dispatch, tokens.access, tokens.refresh, tracks])
 
     return(
         <>
