@@ -18,7 +18,7 @@ type PlaylistStateType = {
   defaultPlaylist: TrackType[];
   currentTrack: null | TrackType;
   currentPlaylist: TrackType[];
-  favoriteTracksList:number[]; 
+  favoriteTracksList: TrackType[]; 
   shuffledPlaylist: TrackType[];
   isPlaying: boolean;
   isShuffled: boolean;
@@ -116,7 +116,7 @@ const playlistSlice = createSlice({
     state.favoriteTracksList=state.favoriteTracksList.filter((track)=>track.id!==action.payload.id)
   },*/
 
-   setLikeTrack: (state, action: PayloadAction<number>) => {
+   setLikeTrack: (state, action: PayloadAction<TrackType>) => {
     const trackId = action.payload;
     //добавить трек в favoriteTracksList
    /* const trackToAdd = state.favoriteTracksList.find((track) => track._id === trackId);
@@ -125,7 +125,7 @@ const playlistSlice = createSlice({
     }*/
     state.favoriteTracksList.push(trackId);
   },
-   setDisLikeTrack: (state, action: PayloadAction<number>) => {
+   setDisLikeTrack: (state, action: PayloadAction<TrackType>) => {
     const trackId = action.payload;
     //убрать трек из favoriteTracksList
     state.favoriteTracksList = state.favoriteTracksList.filter((id) => id !== trackId);

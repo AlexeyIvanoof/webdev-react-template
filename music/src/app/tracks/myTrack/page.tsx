@@ -47,34 +47,30 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useEffect, useState } from "react";
 import Tracks from "@/components/tracks/Track";
 import { getFavoriteTracks, setDefaultPlaylist } from "@/store/features/track";
-import { TrackType } from "@/types/types";
-
 
 export default function MyTracksPage () {
 const tokens =  useAppSelector(state => state.auth.tokens);
     const dispatch = useAppDispatch();
-
-    const [tracks, setTracks] = useState<TrackType[]>([]);
   
-    /*const favorite = useAppSelector(
+    const favorite = useAppSelector(
       (state) => state.playlist.favoriteTracksList
-    );*/
+    );
 
     const filteredTracks = useAppSelector(
       (state) => state.playlist.filteredTracks
     );
    
     useEffect(() => {
-       getFavoriteTracks({access: tokens.access, refresh: tokens.refresh,})
+      dispatch(getFavoriteTracks({access: tokens.access, refresh: tokens.refresh,}))
       
-       dispatch(setDefaultPlaylist(tracks));
-       
-    }, [dispatch, tokens.access, tokens.refresh, tracks])
+       dispatch(setDefaultPlaylist(favorite));
+       console.log(favorite)
+    }, [dispatch, favorite, tokens.access, tokens.refresh ])
 
     return(
         <>
         <CenterblockSearch/>
-        <Tracks tracks={tracks}  filteredTracks={filteredTracks} title = {'Мои Треки'}/>
+        <Tracks tracks={favorite}  filteredTracks={filteredTracks} title = {'Мои Треки'}/>
         </>
         
     )
