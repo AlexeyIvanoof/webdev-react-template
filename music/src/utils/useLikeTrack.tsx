@@ -4,7 +4,7 @@ import { setDisLikeTrack, setLikeTrack } from "@/store/features/track";
 import { TrackType } from "@/types/types";
 
 
-const useLikeTrack = (trackId: TrackType) =>{
+const useLikeTrack = (trackId: number) =>{
 
 const dispatch = useAppDispatch();
 
@@ -13,7 +13,7 @@ const tokens =  useAppSelector(state => state.auth.tokens);
 
 const likedTracks = useAppSelector(state => state.playlist.favoriteTracksList);
 
-const isLiked = !!likedTracks.find((id) => id === trackId);
+const isLiked = !!likedTracks.find((track) => track._id === trackId);
 console.log(likedTracks)
 const handleLike = async (e: React.MouseEvent) => {
     e.stopPropagation();

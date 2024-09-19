@@ -161,7 +161,10 @@ const playlistSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(getFavoriteTracks.fulfilled,(state, action) =>{
+      
       state.favoriteTracksList = action.payload.data;
+      state.defaultPlaylist = action.payload.data;
+      state.filteredTracks = action.payload.data;
     })
   },
 });

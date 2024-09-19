@@ -60,12 +60,16 @@ const tokens =  useAppSelector(state => state.auth.tokens);
       (state) => state.playlist.filteredTracks
     );
    
-    useEffect(() => {
+   /* useEffect(() => {
       dispatch(getFavoriteTracks({access: tokens.access, refresh: tokens.refresh,}))
       
        dispatch(setDefaultPlaylist(favorite));
        console.log(favorite)
-    }, [dispatch, favorite, tokens.access, tokens.refresh ])
+    }, [dispatch, favorite, tokens.access, tokens.refresh ])*/
+
+    useEffect(() => {
+      dispatch(getFavoriteTracks({access: tokens.access, refresh: tokens.refresh}))     
+    }, [dispatch, tokens.access, tokens.refresh ])
 
     return(
         <>
