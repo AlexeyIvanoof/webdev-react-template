@@ -1,7 +1,6 @@
 import { dislikeTrack, likeTrack } from "@/api/api";
 import { useAppDispatch, useAppSelector } from "@/hooks"
 import { setDisLikeTrack, setLikeTrack } from "@/store/features/track";
-import { TrackType } from "@/types/types";
 
 
 const useLikeTrack = (trackId: number) =>{

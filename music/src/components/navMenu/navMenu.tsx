@@ -5,11 +5,23 @@ import classNames from "classnames";
 import styles from "./navMenu.module.css";
 import { useState } from "react";
 import Link from "next/link";
+import { useAppSelector } from "@/hooks";
+import { useRouter } from 'next/navigation'
 
 export default function NawMenu() {
+  const router = useRouter();
   const [visible, setVisible] = useState(false);
   const toggleVisibility = () => setVisible(!visible);
-
+  const tokens =  useAppSelector(state => state.auth.tokens);
+  const handleClick = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!tokens.access || !tokens.refresh) {
+      router.push('/')
+      return alert("Вы не авторизованы!");
+    }else{
+      router.push('/tracks/myTrack')
+    }
+  }
   return (
     <nav className={classNames(styles.mainNav, styles.nav)}>
       <div className={classNames(styles.navLogo, styles.logo)}>
@@ -35,9 +47,9 @@ export default function NawMenu() {
               </Link>
           </li>
           <li className={styles.menuItem}>
-            <Link href={"/tracks/myTrack"} className={styles.menuLink}>
+            <button  onClick={handleClick}  className={styles.menuButton}>
             Мой плейлист
-            </Link> 
+            </button> 
           </li>
           <li className={styles.menuItem}>
           <Link href={"/signin"} className={styles.menuLink}>

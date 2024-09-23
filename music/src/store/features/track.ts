@@ -107,29 +107,27 @@ const playlistSlice = createSlice({
 
    //Работа с лайками
 
-  /*setLikeTrack:(state,action:PayloadAction<TrackType>)=>{
-   state.favoriteTracksList.push(action.payload)
-  },
-
-
-  setDisLikeTrack:(state,action:PayloadAction<TrackType>)=>{
-    state.favoriteTracksList=state.favoriteTracksList.filter((track)=>track.id!==action.payload.id)
-  },*/
-
-   setLikeTrack: (state, action: PayloadAction<TrackType>) => {
+   setLikeTrack: (state, action: PayloadAction<number>) => {
     const trackId = action.payload;
-    //добавить трек в favoriteTracksList
-   /* const trackToAdd = state.favoriteTracksList.find((track) => track._id === trackId);
+
+    const trackToAdd = state.defaultPlaylist.find((track) => track._id === trackId);
     if (trackToAdd) {
       state.favoriteTracksList.push(trackToAdd);
-    }*/
+    }
+},
+ setDisLikeTrack: (state, action: PayloadAction<number>) => {
+  const trackId = action.payload;
+  state.favoriteTracksList = state.favoriteTracksList.filter((track) => track._id !== trackId);
+},
+
+   /*setLikeTrack: (state, action: PayloadAction<TrackType>) => {
+    const trackId = action.payload;
     state.favoriteTracksList.push(trackId);
   },
    setDisLikeTrack: (state, action: PayloadAction<TrackType>) => {
     const trackId = action.payload;
-    //убрать трек из favoriteTracksList
     state.favoriteTracksList = state.favoriteTracksList.filter((id) => id !== trackId);
-  },
+  },*/
 
     setFilters: (
       state,
