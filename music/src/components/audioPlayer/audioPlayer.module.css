@@ -344,3 +344,16 @@
   fill: #ffffff;
   stroke: #ffffff;
 }
+
+.trackTimeSvg {
+  width: 14px;
+  height: 12px;
+  margin-right: 17px;
+  fill: transparent;
+  stroke: #696969;
+  margin-left: 25px;
+}
+
+.like {
+  fill: #B672FF;
+}

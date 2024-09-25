@@ -63,11 +63,11 @@ export default function PlayList ({track,  tracks}:PlayListProps) {
           <div onClick={handleLike}>
             {isLiked ? (
               <svg className={styles.trackTimeSvg}>
-              <use xlinkHref="/sprite.svg#icon-like"></use>
+              <use className={styles.like} xlinkHref="/sprite.svg#icon-like"></use>
             </svg>
              ):(
               <svg className={styles.trackTimeSvg}>
-              <use  xlinkHref="/sprite.svg#icon-dislike"></use>
+              <use  xlinkHref="/sprite.svg#icon-like"></use>
             </svg>
              )}
            
