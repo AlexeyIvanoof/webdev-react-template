@@ -7,15 +7,14 @@ import { ProgressBar } from "./progressBar/ProgressBar"
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setIsPlaying, setIsShuffled, setNextTrack, setPrevTrack } from "../../store/features/track"
 import useLikeTrack from "@/utils/useLikeTrack";
-import { TrackType } from "@/types/types";
 
-export default function AudioPlayer(track: TrackType) {   
+export default function AudioPlayer() {   
 
    const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
    const isShuffled = useAppSelector((state) => state.playlist.isShuffled);
    const isPlaying = useAppSelector((state) => state.playlist.isPlaying);
    const dispatch = useAppDispatch();
-   const {isLiked, handleLike}= useLikeTrack(track._id)
+   const {isLiked, handleLike}= useLikeTrack(currentTrack ? currentTrack._id : 1)
   
 
     // Получаем ссылку на DOM-элемент audio
@@ -137,10 +136,6 @@ useEffect(() => {
                   </div>
                   <div className={styles.trackPlayAlbum}>
                   <a className={styles.trackPlayAlbumLink} href="http://"> {currentTrack.author}</a>
-                  </div>
-
-                  <div className={styles.trackPlayAlbum}>
-                  <a className={styles.trackPlayAlbumLink} href="http://"> {currentTrack._id}</a>
                   </div>
                 </div>
 

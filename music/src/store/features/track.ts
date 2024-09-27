@@ -113,21 +113,15 @@ const playlistSlice = createSlice({
     const trackToAdd = state.defaultPlaylist.find((track) => track._id === trackId);
     if (trackToAdd) {
       state.favoriteTracksList.push(trackToAdd);
+      //state.filteredTracks.push(trackToAdd);
     }
 },
  setDisLikeTrack: (state, action: PayloadAction<number>) => {
   const trackId = action.payload;
-  state.favoriteTracksList = state.favoriteTracksList.filter((track) => track._id !== trackId);
+  const actuallyFavoriteTrackList = state.favoriteTracksList.filter((track) => track._id !== trackId);
+  state.favoriteTracksList = actuallyFavoriteTrackList; 
+  //state.filteredTracks = actuallyFavoriteTrackList;
 },
-
-   /*setLikeTrack: (state, action: PayloadAction<TrackType>) => {
-    const trackId = action.payload;
-    state.favoriteTracksList.push(trackId);
-  },
-   setDisLikeTrack: (state, action: PayloadAction<TrackType>) => {
-    const trackId = action.payload;
-    state.favoriteTracksList = state.favoriteTracksList.filter((id) => id !== trackId);
-  },*/
 
     setFilters: (
       state,

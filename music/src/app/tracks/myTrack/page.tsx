@@ -74,7 +74,7 @@ const tokens =  useAppSelector(state => state.auth.tokens);
     return(
         <>
         <CenterblockSearch/>
-        <Tracks tracks={favorite}  filteredTracks={filteredTracks} title = {'Мои Треки'}/>
+        <Tracks tracks={favorite}  filteredTracks={favorite} title = {'Мои Треки'}/>
         </>
         
     )
