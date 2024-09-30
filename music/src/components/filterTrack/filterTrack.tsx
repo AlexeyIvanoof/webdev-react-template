@@ -13,8 +13,6 @@ type FilterProps = {
 
 export default function Filter({tracks}:FilterProps) {
 
-const activeAuthors: never[] = [];
-const activeGenres: never[] = [];
 const onChangeFilterList = (filterList: string[], filterElement: string) => {
   if (filterList.includes(filterElement)) {
     // Если такое название (filterElement) уже существует в массиве, то удаляем его из filterList
