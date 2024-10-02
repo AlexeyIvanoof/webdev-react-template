@@ -144,9 +144,13 @@ const playlistSlice = createSlice({
         const hasSearchValue = t.name
             .toLowerCase()
             .includes(state.filterOptions.searchValue.toLowerCase());
-        if(hasAuthors) {
-          return isAuthors && hasSearchValue;
-        } else {return isGenres && hasSearchValue};
+        if(hasAuthors && hasGenres) {
+          return isAuthors && hasSearchValue && isGenres;
+        } else if(hasAuthors) {
+          return hasAuthors && hasSearchValue
+        }else{
+          return hasSearchValue && isGenres;
+        };
 
       });
     },

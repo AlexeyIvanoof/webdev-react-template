@@ -49,7 +49,7 @@ return(
 import classNames from "classnames";
 import styles from "./filterItem.module.css";
 import { setFilters } from "@/store/features/track";
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 
 type Props = {
     title: string;
@@ -62,10 +62,20 @@ type Props = {
 
 export function FilterItem ({ title, list, isActive, handleFilter, filterName, numberSelectedValues }: Props) {
   const dispatch = useAppDispatch();
-
+  const  selectedOptions = useAppSelector(
+    (state) => state.playlist.filterOptions
+  )
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+let newArr;
+if (selectedOptions[title.includes(event.target.value)]){
+  newArr = [...selectedOptions[title]].filter(
+    (item) => item ! == event.target.value
+  )
+}else{
+  newArr = [...selectedOptions[title], event.target.value]
+}
     dispatch(setFilters({
-      searchValue: event.target.value
+     [title] : newArr
     }));
   };
 
@@ -73,7 +83,7 @@ export function FilterItem ({ title, list, isActive, handleFilter, filterName, n
     <div>
       <div className={styles.filterBlock}>
         {numberSelectedValues > 0 && (
-          <div className={styles.selectedFilterCount}>{numberSelectedValues}</div>
+         isActive && (  <div className={styles.selectedFilterCount}>{numberSelectedValues}</div>)
         )}
         <div 
           onClick={() => handleFilter(filterName)} 
