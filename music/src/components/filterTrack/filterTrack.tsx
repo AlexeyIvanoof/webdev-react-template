@@ -13,7 +13,7 @@ type FilterProps = {
 
 export default function Filter({tracks}:FilterProps) {
 
-const onChangeFilterList = (filterList: string[], filterElement: string) => {
+/*const onChangeFilterList = (filterList: string[], filterElement: string) => {
   if (filterList.includes(filterElement)) {
     // Если такое название (filterElement) уже существует в массиве, то удаляем его из filterList
     filterList = filterList.filter(item => item !== filterElement);
@@ -21,7 +21,7 @@ const onChangeFilterList = (filterList: string[], filterElement: string) => {
     // Если нет, то пушим название фильтра в нужный массив
     filterList.push(filterElement);
   }
-}
+}*/
 
 const getUniqueAuthors = getUniqueValues(tracks, "author")
 const getUniqueGenres = getUniqueValues(tracks, "genre")
@@ -33,7 +33,7 @@ setActiveFilter((prev) => (prev === filterName ? null : filterName))
   return (
     <div className={styles.centerblockFilter}>
       <div className={styles.filterTitle}>Искать по:</div>
-      <FilterItem title={"исполнителю"}
+      <FilterItem title={"author"}
       list={getUniqueAuthors}
       handleFilter={handleFilter}
       isActive={activeFilter === "исполнителю"}
@@ -41,7 +41,7 @@ setActiveFilter((prev) => (prev === filterName ? null : filterName))
       numberSelectedValues={getUniqueAuthors.length}/>
 
       <FilterItem 
-       title={"жанру"} 
+       title={"genre"} 
        list={getUniqueGenres} 
        handleFilter = {handleFilter} 
        isActive = {activeFilter === "жанру"} 

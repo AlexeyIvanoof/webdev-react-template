@@ -52,7 +52,7 @@ import { setFilters } from "@/store/features/track";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 
 type Props = {
-    title: string;
+    title: 'author' | 'genre';
     list: string[];
     isActive: boolean;
     handleFilter: (filterName: string) => void;

@@ -35,6 +35,7 @@ export default function SigninPage() {
       ]);
       router.push('/');
     }  catch (error) {
+      if(error instanceof Error)
       setError(error.message);
     }
   };
