@@ -66,24 +66,23 @@ export function FilterItem ({ title, list, isActive, handleFilter, filterName, n
     (state) => state.playlist.filterOptions
   )
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-let newArr;
-if (selectedOptions[title.includes(event.target.value)]){
-  newArr = [...selectedOptions[title]].filter(
-    (item) => item ! == event.target.value
-  )
-}else{
-  newArr = [...selectedOptions[title], event.target.value]
-}
-    dispatch(setFilters({
-     [title] : newArr
-    }));
+    const item = event.target.id;
+    const options = selectedOptions[title];
+
+    dispatch(
+      setFilters({
+        [title]: options.includes(item)
+          ? options.filter((el) => el !== item)
+          : [...options, item],
+      })
+    );
   };
 
   return (
     <div>
       <div className={styles.filterBlock}>
-        {numberSelectedValues > 0 && (
-         isActive && (  <div className={styles.selectedFilterCount}>{numberSelectedValues}</div>)
+      {numberSelectedValues > 0 && (
+         <div className={styles.selectedFilterCount}>{numberSelectedValues}</div>
         )}
         <div 
           onClick={() => handleFilter(filterName)} 
@@ -94,15 +93,9 @@ if (selectedOptions[title.includes(event.target.value)]){
       </div>
       {isActive && (
         <ul className={styles.list}>
-          {list.map((item, index) => (
-            <li key={item} className={classNames(styles.listItem)}>
-              <input 
-                type="checkbox" 
-                id={`filter-item-${index}`} 
-                value={item} 
-                onChange={handleChange} 
-              />
-              <label htmlFor={`filter-item-${index}`}>{item}</label>
+         {list.map((item, index) => (
+            <li key={index} className={classNames(styles.listItem)} id={item} onClick={handleChange}>
+             {item}
             </li>
           ))}
         </ul>

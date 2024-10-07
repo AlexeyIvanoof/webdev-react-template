@@ -140,14 +140,14 @@ const playlistSlice = createSlice({
           ? state.filterOptions.author.includes(t.author)
           : true;
         const hasGenres = state.filterOptions.genre.length !==0;
-        const isGenres = hasGenres ? state.filterOptions.genre.includes(t.genre) : true;
+        const isGenres = hasGenres ? state.filterOptions.genre.includes(t.genre[0]) : true;
         const hasSearchValue = t.name
             .toLowerCase()
             .includes(state.filterOptions.searchValue.toLowerCase());
         if(hasAuthors && hasGenres) {
           return isAuthors && hasSearchValue && isGenres;
         } else if(hasAuthors) {
-          return hasAuthors && hasSearchValue
+          return isAuthors && hasSearchValue
         }else{
           return hasSearchValue && isGenres;
         };
