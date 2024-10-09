@@ -13,7 +13,7 @@ export default function SigninPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState(null|| String);
+  const [error, setError] = useState(String);
 
   
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

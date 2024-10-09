@@ -5,26 +5,16 @@ import styles from "./filterTrack.module.css";
 import { getUniqueValues } from "@/utils/getUniqueValues";
 import { FilterItem } from "../trackListTitle/filterItem/FilterItem";
 import { useState } from "react";
+import { useAppSelector } from "@/hooks";
 
 const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "Сначала старые"];
-type FilterProps = {
-  tracks: TrackType[]
-}
 
-export default function Filter({tracks}:FilterProps) {
+export default function Filter() {
 
-/*const onChangeFilterList = (filterList: string[], filterElement: string) => {
-  if (filterList.includes(filterElement)) {
-    // Если такое название (filterElement) уже существует в массиве, то удаляем его из filterList
-    filterList = filterList.filter(item => item !== filterElement);
-  } else {
-    // Если нет, то пушим название фильтра в нужный массив
-    filterList.push(filterElement);
-  }
-}*/
+const {defaultPlaylist} = useAppSelector(state => state.playlist)
 
-const getUniqueAuthors = getUniqueValues(tracks, "author")
-const getUniqueGenres = getUniqueValues(tracks, "genre")
+const getUniqueAuthors = getUniqueValues(defaultPlaylist, "author")
+const getUniqueGenres = getUniqueValues(defaultPlaylist, "genre")
 const [activeFilter, setActiveFilter] =  useState<string | null>(null);
 const handleFilter =(filterName: string) => {
 setActiveFilter((prev) => (prev === filterName ? null : filterName))

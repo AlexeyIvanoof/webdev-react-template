@@ -14,7 +14,7 @@ export default function SignupPage() {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
     const [username, setUserName] = useState("");
-    const [error, setError] = useState(null|| String);
+    const [error, setError] = useState(String);
     const [isSubmitting, setIsSubmitting] = useState(false);
   
   
@@ -92,7 +92,7 @@ export default function SignupPage() {
 
     // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
     useEffect(() => {
-      setError(null||String);
+      setError(String);
     }, [email, password, repeatPassword, username]);
   
     useEffect(() => {
