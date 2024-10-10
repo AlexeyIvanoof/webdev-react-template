@@ -22,10 +22,12 @@ export const getUser = createAsyncThunk(
   type AuthStateType = {
     user: StaredUserType | null;
     tokens: Tokens;
+    errors: string | null;
   };
   
   const initialState: AuthStateType = {
     user: null,
+    errors : null,
   tokens: {
     access: null,
     refresh: null,
@@ -56,6 +58,11 @@ const authSlice = createSlice({
           state.tokens.refresh = action.payload.refresh;
         }
       );
+      builder.addCase( getTokens.rejected, (state, action) => {
+        if (action.error.message) {
+          state.errors = action.error.message;
+        }
+      })
     },
   });
 

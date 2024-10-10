@@ -6,14 +6,14 @@ import styles from "./signin.module.css";
 import classNames from "classnames";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { getTokens, getUser } from "@/store/features/authSlice";
 
 export default function SigninPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState(String);
+  const errors = useAppSelector((state)=> state.auth.errors)
 
   
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +26,7 @@ export default function SigninPage() {
     });
   };
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  /*const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       await Promise.all([
@@ -38,16 +38,22 @@ export default function SigninPage() {
       if(error instanceof Error)
       setError(error.message);
     }
+  };*/
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+      await Promise.all([
+        dispatch(getTokens(formData)).unwrap(),
+        dispatch(getUser(formData)).unwrap(),
+      ]);
+      if(errors){
+        return errors
+      }
+      router.push('/');
+      
+       
   };
 
- /* useEffect( ()=> {
-    dispatch(
-      getTokens({
-        email:"email",
-        password:"password"
-      })
-    )
-    } ,[])*/
 
   return (
     <div className={styles.wrapper}>
@@ -80,7 +86,7 @@ export default function SigninPage() {
               value={formData.password}
               onChange={handleChange}
             />
-            {error && <div className={styles.Error}>{error}</div>}
+            {errors && <div className={styles.Error}>{errors}</div>}
             <button  onClick={handleSubmit} className={styles.modalBtnEnter}>
               <Link href="">Войти</Link>
             </button>
