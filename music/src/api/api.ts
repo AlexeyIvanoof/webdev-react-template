@@ -98,6 +98,13 @@ export async function GetAllTracks() {
           },
         }
       );
+
+      if (response.status === 401) {
+        return response.json().then((errorResponse) => {
+          throw new Error(errorResponse.message);
+        });
+      }
+
       const responseData = await response.json();
       return responseData;
     } catch (error) {

@@ -63,6 +63,11 @@ const authSlice = createSlice({
           state.errors = action.error.message;
         }
       })
+      .addCase(getUser.rejected, (state, action) => {
+        if (action.error.message) {
+          state.errors = action.error.message;
+        }
+      })
     },
   });
 
