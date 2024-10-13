@@ -1,4 +1,4 @@
-import {fetchFavoriteTracks} from "@/api/api";
+import {fetchCatalogTracks, fetchFavoriteTracks} from "@/api/api";
 import { TrackType } from "@/types/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -6,11 +6,22 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 export const getFavoriteTracks = createAsyncThunk(
   "playlist/getFavoriteTracks",
   async (Tokens:{
-    access:string 
-    refresh: string
+    access: string | null
+    refresh: string | null
   }) => {
     const favoriteTracks = await fetchFavoriteTracks(Tokens);
     return favoriteTracks;
+  }
+);
+
+export const getCategoryTracks = createAsyncThunk(
+  "playlist/getCategoryTracks",
+  async (Tokens:{
+    access: string | null
+    refresh: string | null
+  }) => {
+    const categoryTracks = await fetchCatalogTracks(Tokens);
+    return categoryTracks;
   }
 );
 
@@ -20,6 +31,7 @@ type PlaylistStateType = {
   currentPlaylist: TrackType[];
   favoriteTracksList: TrackType[]; 
   shuffledPlaylist: TrackType[];
+  categoryArr: TrackType[],
   isPlaying: boolean;
   isShuffled: boolean;
   filterOptions: {
@@ -35,7 +47,8 @@ const initialState: PlaylistStateType = {
   currentTrack: null,
   currentPlaylist: [],
   shuffledPlaylist: [],
-  favoriteTracksList:[], 
+  favoriteTracksList:[],
+  categoryArr: [], 
   isPlaying: false,
   isShuffled: false,
   filterOptions: {
@@ -67,6 +80,10 @@ const playlistSlice = createSlice({
     setDefaultPlaylist: (state, action: PayloadAction<TrackType[]>) => {
       state.defaultPlaylist = action.payload;
       state.filteredTracks = action.payload;
+    },
+
+    setCategoryArr: (state,  action: PayloadAction<TrackType[]>) => {
+      state.categoryArr = action.payload;
     },
 
     setPrevTrack: (state) => {
@@ -162,6 +179,14 @@ const playlistSlice = createSlice({
       state.defaultPlaylist = action.payload.data;
       state.filteredTracks = action.payload.data;
     })
+
+    builder.addCase(getCategoryTracks.fulfilled,(state, action) =>{
+      
+      state.categoryArr = action.payload.data;
+      state.defaultPlaylist = action.payload.data;
+      state.filteredTracks = action.payload.data;
+    })
+
   },
 });
 
@@ -174,6 +199,7 @@ export const {
   setIsShuffled,
   setFilters,
   setLikeTrack,
-  setDisLikeTrack
+  setDisLikeTrack,
+  setCategoryArr
 } = playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;

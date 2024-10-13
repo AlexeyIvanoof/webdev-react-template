@@ -18,7 +18,7 @@ export default function Tracks({filteredTracks, title}: TrackTypeProp) {
     return (
     <>
           <h2 className={styles.centerblockH2}>{title}</h2>
-          <Filter  tracks={filteredTracks}/>
+          <Filter/>
           <TrackListTitle  tracks={filteredTracks}/>
     </>
     )

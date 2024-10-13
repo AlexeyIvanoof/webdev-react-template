@@ -68,6 +68,7 @@
 .sidebarItem {
   width: 250px;
   height: 150px;
+  margin-bottom: 30px;
 }
 
 .sidebarItem:not(:last-child) {
@@ -83,3 +84,4 @@
   width: 100%;
   height: auto;
 }
+

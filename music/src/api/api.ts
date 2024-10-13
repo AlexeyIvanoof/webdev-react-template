@@ -206,3 +206,36 @@ export async function GetAllTracks() {
     );
     return res.json();
   }
+
+  export async function fetchCatalogAllTracks() {
+    const response = await fetch(
+      API_URL + `catalog/selection/all`,
+      {
+        method: "GET",
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Ошибка сервера");
+    }
+    const data = await response.json();
+    return data.data;
+  }
+     
+  
+  export async function fetchCatalogTracks({
+    access, refresh
+  }:{
+    access: string | null ; refresh: string;
+  }) {
+    const res = await fetchWithAuth(
+      API_URL + `catalog/selection/<id>`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${access}`,
+        },
+      },
+      refresh
+    );
+    return res.json();
+  }
