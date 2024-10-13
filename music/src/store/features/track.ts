@@ -16,11 +16,8 @@ export const getFavoriteTracks = createAsyncThunk(
 
 export const getCategoryTracks = createAsyncThunk(
   "playlist/getCategoryTracks",
-  async (Tokens:{
-    access: string | null
-    refresh: string | null
-  }) => {
-    const categoryTracks = await fetchCatalogTracks(Tokens);
+  async (id : number) => {
+    const categoryTracks = await fetchCatalogTracks(id);
     return categoryTracks;
   }
 );

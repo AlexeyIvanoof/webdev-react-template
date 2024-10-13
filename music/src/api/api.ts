@@ -222,7 +222,7 @@ export async function GetAllTracks() {
   }
      
   
-  export async function fetchCatalogTracks({
+  /*export async function fetchCatalogTracks({
     access, refresh
   }:{
     access: string | null ; refresh: string;
@@ -238,4 +238,19 @@ export async function GetAllTracks() {
       refresh
     );
     return res.json();
-  }
+  }*/
+
+    export async function fetchCatalogTracks(id: number) {
+      const response = await fetch(
+        API_URL + `/catalog/selection/${id}/`,
+        {
+          method: "GET",
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Ошибка сервера");
+      }
+      const data = await response.json();
+      return data.data;
+    }
+  

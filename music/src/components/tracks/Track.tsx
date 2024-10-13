@@ -9,7 +9,7 @@ import styles from "./Tracks.module.css"
 type TrackTypeProp = {
   filteredTracks: TrackType[];
   tracks: TrackType[];
-  title: string
+  title: string | undefined
 }
 
 
