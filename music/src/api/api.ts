@@ -242,7 +242,7 @@ export async function GetAllTracks() {
 
     export async function fetchCatalogTracks(id: number) {
       const response = await fetch(
-        API_URL + `/catalog/selection/${id}/`,
+        API_URL + `catalog/selection/${id+1}/`,
         {
           method: "GET",
         }

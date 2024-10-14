@@ -14,14 +14,6 @@ export const getFavoriteTracks = createAsyncThunk(
   }
 );
 
-export const getCategoryTracks = createAsyncThunk(
-  "playlist/getCategoryTracks",
-  async (id : number) => {
-    const categoryTracks = await fetchCatalogTracks(id);
-    return categoryTracks;
-  }
-);
-
 type PlaylistStateType = {
   defaultPlaylist: TrackType[];
   currentTrack: null | TrackType;
@@ -176,14 +168,6 @@ const playlistSlice = createSlice({
       state.defaultPlaylist = action.payload.data;
       state.filteredTracks = action.payload.data;
     })
-
-    builder.addCase(getCategoryTracks.fulfilled,(state, action) =>{
-      
-      state.categoryArr = action.payload.data;
-      state.defaultPlaylist = action.payload.data;
-      state.filteredTracks = action.payload.data;
-    })
-
   },
 });
 
