@@ -14,8 +14,7 @@ export default function SigninPage() {
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const errors = useAppSelector((state)=> state.auth.errors)
-
-  
+  const [error, setError] = useState(String);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => {
@@ -26,7 +25,7 @@ export default function SigninPage() {
     });
   };
 
-  /*const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     try {
       await Promise.all([
@@ -38,21 +37,21 @@ export default function SigninPage() {
       if(error instanceof Error)
       setError(error.message);
     }
-  };*/
+  };
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  /*const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
       await Promise.all([
         dispatch(getTokens(formData)).unwrap(),
         dispatch(getUser(formData)).unwrap(),
       ]);
       if(errors){
-        return errors
+         errors
       }
       router.push('/');
       
        
-  };
+  };*/
 
 
   return (
