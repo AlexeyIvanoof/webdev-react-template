@@ -222,23 +222,6 @@ export async function GetAllTracks() {
   }
      
   
-  /*export async function fetchCatalogTracks({
-    access, refresh
-  }:{
-    access: string | null ; refresh: string;
-  }) {
-    const res = await fetchWithAuth(
-      API_URL + `catalog/selection/<id>`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${access}`,
-        },
-      },
-      refresh
-    );
-    return res.json();
-  }*/
 
     export async function fetchCatalogTracks(id: number) {
       const response = await fetch(

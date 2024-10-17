@@ -32,7 +32,7 @@ const tokens =  useAppSelector(state => state.auth.tokens);
 
 import CenterblockSearch from "@/components/centerBlockSesrch/centerBlockSearch";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Tracks from "@/components/tracks/Track";
 //import { getCategoryTracks } from "@/store/features/track";
 import { fetchCatalogTracks } from "@/api/api";
@@ -42,6 +42,7 @@ import { setCategoryArr } from "@/store/features/track";
 
 export default function Category () {
     const dispatch = useAppDispatch();
+    const [error, setError] = useState(String);
     const {currentPlaylist} = useAppSelector((state) => state.playlist);
     const category = useAppSelector(
       (state) => state.playlist.categoryArr
@@ -59,7 +60,8 @@ export default function Category () {
           dispatch(setCategoryArr(tracks));
         })
       } catch (error) {
-  
+        if(error instanceof Error)
+          setError(error.message);
       }
     }, [dispatch, params.id, currentPlaylist, name]);
     return(

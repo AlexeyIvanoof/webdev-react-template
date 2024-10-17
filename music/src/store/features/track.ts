@@ -1,4 +1,4 @@
-import {fetchCatalogTracks, fetchFavoriteTracks} from "@/api/api";
+import {fetchCatalogAllTracks, fetchCatalogTracks, fetchFavoriteTracks} from "@/api/api";
 import { TrackType } from "@/types/types";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -11,6 +11,15 @@ export const getFavoriteTracks = createAsyncThunk(
   }) => {
     const favoriteTracks = await fetchFavoriteTracks(Tokens);
     return favoriteTracks;
+  }
+);
+
+
+export const getCatalogTracks = createAsyncThunk(
+  "playlist/getCatalogTracks",
+  async () => {
+    const CatalogTracks = await fetchCatalogAllTracks();
+    return CatalogTracks;
   }
 );
 

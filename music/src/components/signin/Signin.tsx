@@ -39,21 +39,6 @@ export default function SigninPage() {
     }
   };
 
-  /*const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-      await Promise.all([
-        dispatch(getTokens(formData)).unwrap(),
-        dispatch(getUser(formData)).unwrap(),
-      ]);
-      if(errors){
-         errors
-      }
-      router.push('/');
-      
-       
-  };*/
-
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.containerEnter}>

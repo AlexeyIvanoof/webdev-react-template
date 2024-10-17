@@ -61,13 +61,30 @@ export default function Sidebar() {
 */
 
 'use client'
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import styles from "./sidebar.module.css";
 import Link from "next/link";
 import SidebarCategory from "./sidebarCategory";
+import { fetchCatalogAllTracks } from "@/api/api";
+import { useEffect, useState } from "react";
+import { setDefaultPlaylist } from "@/store/features/track";
+import { TrackType } from "@/types/types";
 
 export default function Sidebar() {
+  const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.auth.user?.username)
+  const [tracks, setTracks] = useState<TrackType[]>([]);
+  useEffect(() => {
+    fetchCatalogAllTracks()
+      .then((tracksData) => {
+        dispatch(setDefaultPlaylist(tracksData));
+        setTracks(tracksData);
+      })
+      .catch((error) => {
+        throw new Error(error.message);
+      });
+  }, [dispatch]);
+
   return (
     <div className={styles.mainSidebar}>
       <div className={styles.sidebarPersonal}>
