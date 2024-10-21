@@ -3,8 +3,26 @@ import { CategoryArr } from "@/utils/categoryes";
 import styles from "./sidebar.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { TrackType } from "@/types/types";
+import { fetchCatalogAllTracks } from "@/api/api";
+import { setDefaultPlaylist } from "@/store/features/track";
+import { useDispatch } from "react-redux";
 
 export default function SidebarCategory() {
+const dispatch = useDispatch();
+  const [tracks, setTracks] = useState<TrackType[]>([]);
+  useEffect(() => {
+    fetchCatalogAllTracks()
+      .then((data) => {
+        dispatch(setDefaultPlaylist(data));
+        setTracks(data);
+      })
+      .catch((error) => {
+        throw new Error(error.message);
+      });
+  }, [dispatch]);
+
     const fullCategory = CategoryArr.map((category) => (
         <li className={styles.sidebarItem} key={category.id}>
         <Link className={styles.sidebarlink} href={`tracks/category/${category.id}`}> <Image

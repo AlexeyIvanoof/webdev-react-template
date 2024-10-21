@@ -8,7 +8,7 @@ import { setDefaultPlaylist } from "@/store/features/track";
 import { TrackType } from "@/types/types";
 import { useEffect, useState } from "react";
 import Error from "@/app/error";
-import Sidebar from "@/components/sidebar/sidebar";
+//import Sidebar from "@/components/sidebar/sidebar";
 
 export default function TracksPage () {
 
@@ -34,7 +34,6 @@ export default function TracksPage () {
         <>
         <CenterblockSearch/>
         <Tracks tracks={tracks}  filteredTracks={filteredTracks} title = {'Треки'}/>
-        <Sidebar/>
         </>
         
     )

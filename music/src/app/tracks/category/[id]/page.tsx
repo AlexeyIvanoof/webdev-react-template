@@ -55,7 +55,7 @@ export default function Category () {
           console.log(res.items);
           name.current = res.name;
           const items = res.items;
-          const tracks = items.map((item: number) => currentPlaylist.find((track) => track._id === item)).filter(Boolean);
+          const tracks = items.map((item: number) => currentPlaylist.filter((track) => track._id === item)).filter(Boolean);
           console.log(tracks);
           dispatch(setCategoryArr(tracks));
         })
