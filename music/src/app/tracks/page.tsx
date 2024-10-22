@@ -8,10 +8,8 @@ import { setDefaultPlaylist } from "@/store/features/track";
 import { TrackType } from "@/types/types";
 import { useEffect, useState } from "react";
 import Error from "@/app/error";
-//import Sidebar from "@/components/sidebar/sidebar";
 
 export default function TracksPage () {
-
     const dispatch = useAppDispatch();
     const filteredTracks = useAppSelector(
       (state) => state.playlist.filteredTracks
@@ -29,7 +27,6 @@ export default function TracksPage () {
         });
     }, [dispatch]);
   
-
     return(
         <>
         <CenterblockSearch/>

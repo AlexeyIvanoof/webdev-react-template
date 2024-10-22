@@ -1,7 +1,6 @@
 import ReduxProvider from "@/store/ReduxProvider";
 import "./globals.css";
 import { Montserrat } from 'next/font/google';
-import AudioPlayer from "@/components/audioPlayer/AudioPlayer";
 import styles from "./layout.module.css"
 
 const montserrat = Montserrat({

@@ -7,8 +7,6 @@ import Tracks from "@/components/tracks/Track";
 import { getFavoriteTracks} from "@/store/features/track";
 import { useRouter } from "next/navigation";
 
-
-
 export default function MyTracksPage () {
   const router = useRouter();
 const tokens =  useAppSelector(state => state.auth.tokens);

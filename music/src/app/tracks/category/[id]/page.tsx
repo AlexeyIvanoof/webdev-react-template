@@ -34,18 +34,21 @@ import CenterblockSearch from "@/components/centerBlockSesrch/centerBlockSearch"
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { useEffect, useRef, useState } from "react";
 import Tracks from "@/components/tracks/Track";
-//import { getCategoryTracks } from "@/store/features/track";
 import { fetchCatalogTracks } from "@/api/api";
 import { useParams } from "next/navigation";
-import { setCategoryArr } from "@/store/features/track";
+import { setDefaultPlaylist } from "@/store/features/track";
+import { TrackType } from "@/types/types";
 
 
 export default function Category () {
+  const filteredTracks = useAppSelector(
+    (state) => state.playlist.filteredTracks
+  );
     const dispatch = useAppDispatch();
     const [error, setError] = useState(String);
-    const {currentPlaylist} = useAppSelector((state) => state.playlist);
-    const category = useAppSelector(
-      (state) => state.playlist.categoryArr
+    const [categoryTracks, setCategoryTracks] = useState<TrackType[]>([])
+    const {categoryArr} = useAppSelector(
+      (state) => state.playlist
     );
     const name = useRef();
     const params = useParams();
@@ -55,19 +58,20 @@ export default function Category () {
           console.log(res.items);
           name.current = res.name;
           const items = res.items;
-          const tracks = items.map((item: number) => currentPlaylist.filter((track) => track._id === item)).filter(Boolean);
+          const tracks = categoryArr.filter(track =>items.includes(track._id));
           console.log(tracks);
-          dispatch(setCategoryArr(tracks));
+          dispatch(setDefaultPlaylist(tracks));
+          setCategoryTracks(tracks);
         })
       } catch (error) {
         if(error instanceof Error)
           setError(error.message);
       }
-    }, [dispatch, params.id, currentPlaylist, name]);
+    }, [dispatch, categoryArr, params.id]);
     return(
         <>
         <CenterblockSearch/>
-        <Tracks tracks={category}  filteredTracks={category} title = {name.current}/>
+        <Tracks tracks={categoryTracks}  filteredTracks={filteredTracks} title = {name.current}/>
         </>
         
     )

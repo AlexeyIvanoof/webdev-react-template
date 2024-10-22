@@ -5,17 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { TrackType } from "@/types/types";
-import { fetchCatalogAllTracks } from "@/api/api";
-import { setDefaultPlaylist } from "@/store/features/track";
+import { GetAllTracks } from "@/api/api";
+import { setCategoryArr } from "@/store/features/track";
 import { useDispatch } from "react-redux";
 
 export default function SidebarCategory() {
 const dispatch = useDispatch();
   const [tracks, setTracks] = useState<TrackType[]>([]);
   useEffect(() => {
-    fetchCatalogAllTracks()
+    GetAllTracks()
       .then((data) => {
-        dispatch(setDefaultPlaylist(data));
+        dispatch(setCategoryArr(data));
         setTracks(data);
       })
       .catch((error) => {
