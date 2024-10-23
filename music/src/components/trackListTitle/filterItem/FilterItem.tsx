@@ -50,6 +50,7 @@ import classNames from "classnames";
 import styles from "./filterItem.module.css";
 import { setFilters } from "@/store/features/track";
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useState } from "react";
 
 type Props = {
     title: 'author' | 'genre';
@@ -65,10 +66,12 @@ export function FilterItem ({ title, list, isActive, handleFilter, filterName, n
   const  selectedOptions = useAppSelector(
     (state) => state.playlist.filterOptions
   )
+  const [arrFilters, setArrFilters] = useState([]);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const item = event.target.id;
     const options = selectedOptions[title];
-
+ 
     dispatch(
       setFilters({
         [title]: options.includes(item)
@@ -76,6 +79,11 @@ export function FilterItem ({ title, list, isActive, handleFilter, filterName, n
           : [...options, item],
       })
     );
+    // Здесь обработчик клика по элементу
+    if(arrFilters.includes(item)) {
+      return setArrFilters(arrFilters.filter(el => el !== item)) // перебираем массив и оставляем его, но без этого элемента item
+    }
+    arrFilters.push(item);
   };
 
   return (
@@ -93,11 +101,11 @@ export function FilterItem ({ title, list, isActive, handleFilter, filterName, n
       </div>
       {isActive && (
         <ul className={styles.list}>
-         {list.map((item, index) => (
-            <li key={index} className={classNames(styles.listItem)} id={item} onClick={handleChange}>
-             {item}
-            </li>
-          ))}
+        {list.map((item, index) => (
+   <li key={index} className={classNames(styles.listItem, {[styles.active]: arrFilters.includes(item)})} id={item} onClick={handleChange}>
+    {item}
+   </li>
+ ))}
         </ul>
       )}
     </div>

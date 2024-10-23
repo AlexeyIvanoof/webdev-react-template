@@ -94,24 +94,24 @@ useEffect(() => {
                 <svg  onClick={() => {
                       dispatch(setPrevTrack());
                     }} className={classNames(styles.playerBtnPrevSvg, styles.btn)}>
-                    <use href="sprite.svg#icon-prev"></use>
+                    <use href="/sprite.svg#icon-prev"></use>
                   </svg>
                 </div>
                 <div className={styles.playerBtnPlay}>
                 <svg onClick={togglePlay} className={classNames(styles.playerBtnPlaySvg, styles.btn)}>
-                    {isPlaying ? <use href="sprite.svg#icon-pause"></use> : <use href="sprite.svg#icon-play"></use>}
+                    {isPlaying ? <use href="/sprite.svg#icon-pause"></use> : <use href="/sprite.svg#icon-play"></use>}
                   </svg>
                 </div>
                 <div className={styles.playerBtnNext}>
                 <svg   onClick={() => {
                       dispatch(setNextTrack());
                     }} className={classNames(styles.playerBtnNextSvg, styles.btn)}>
-                    <use href="sprite.svg#icon-next"></use>
+                    <use href="/sprite.svg#icon-next"></use>
                   </svg>
                 </div>
                 <div className={classNames(styles.playerBtnRepeat, styles.btnIcon)}>
                 <svg onClick={toggleLoop} className={classNames(styles.playerBtnRepeatSvg, styles.btn, isLoop ? styles.playerBtnRepeatSvgActive : null)}>
-                    <use href="sprite.svg#icon-repeat"></use>
+                    <use href="/sprite.svg#icon-repeat"></use>
                   </svg>
                 </div>
                 <div   onClick={() => {
@@ -120,7 +120,7 @@ useEffect(() => {
                   <svg className={classNames(styles.playerBtnShuffleSvg, {
                         [styles.active]: isShuffled,
                       })}>
-                    <use href="sprite.svg#icon-shuffle"></use>
+                    <use href="/sprite.svg#icon-shuffle"></use>
                   </svg>
                 </div>
               </div>
@@ -128,7 +128,7 @@ useEffect(() => {
                 <div className={styles.trackPlayContain}>
                   <div className={styles.trackPlayImage}>
                     <svg className={styles.trackPlaySvg}>
-                      <use href="sprite.svg#icon-note"></use>
+                      <use href="/sprite.svg#icon-note"></use>
                     </svg>
                   </div>
                   <div className={styles.trackPlayAuthor}>
