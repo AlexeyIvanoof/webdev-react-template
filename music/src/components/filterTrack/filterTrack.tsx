@@ -11,14 +11,15 @@ const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "�
 export default function Filter() {
 
 const {defaultPlaylist} = useAppSelector(state => state.playlist)
-
 const getUniqueAuthors = getUniqueValues(defaultPlaylist, "author")
 const getUniqueGenres = getUniqueValues(defaultPlaylist, "genre")
 const [activeFilter, setActiveFilter] =  useState<string | null>(null);
 const handleFilter =(filterName: string) => {
 setActiveFilter((prev) => (prev === filterName ? null : filterName))
 }
-
+const getActiveFilterCount = (list: string[], filterName: string) => {
+  return activeFilter === filterName ? list.length : 0;
+};
   return (
     <div className={styles.centerblockFilter}>
       <div className={styles.filterTitle}>Искать по:</div>
@@ -27,7 +28,7 @@ setActiveFilter((prev) => (prev === filterName ? null : filterName))
       handleFilter={handleFilter}
       isActive={activeFilter === "исполнителю"}
       filterName={"исполнителю"}
-      numberSelectedValues={getUniqueAuthors.length}/>
+      numberSelectedValues={getActiveFilterCount(getUniqueAuthors, "исполнителю")}/>
 
       <FilterItem 
        title={"genre"} 
@@ -35,7 +36,7 @@ setActiveFilter((prev) => (prev === filterName ? null : filterName))
        handleFilter = {handleFilter} 
        isActive = {activeFilter === "жанру"} 
        filterName={"жанру"}
-       numberSelectedValues={getUniqueGenres.length}/>
+       numberSelectedValues={getActiveFilterCount(getUniqueGenres, "жанру")}/>
 
       <FilterItem 
        title={"году выпуска"} 
@@ -43,7 +44,7 @@ setActiveFilter((prev) => (prev === filterName ? null : filterName))
        handleFilter = {handleFilter} 
        isActive = {activeFilter === "году выпуска"} 
        filterName={"году выпуска"}
-       numberSelectedValues={SORT_OPTIONS.length}/>
+       numberSelectedValues={getActiveFilterCount(SORT_OPTIONS, "году выпуска")}/>
     </div>
   );
 }
