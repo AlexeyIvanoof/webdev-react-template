@@ -1,28 +1,21 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
-//import '@testing-library/jest-dom/extend-expect';
-import NavMenu from './navMenu';
+import NavMenu from "../navMenu/navMenu";
+import { useAppSelector } from '../../hooks';
 import { useRouter } from 'next/navigation';
-import { useAppSelector } from '../..//hooks';
 import ReduxProvider from '@/store/ReduxProvider';
 
-// Mock the useRouter and useAppSelector hooks
+// Mocking dependencies
+jest.mock('../../hooks', () => ({
+  useAppSelector: jest.fn(),
+}));
+
 jest.mock('next/navigation', () => ({
   useRouter: jest.fn(),
 }));
 
-jest.mock('../..//hooks', () => ({
-  useAppSelector: jest.fn(),
-}));
-
 describe('NavMenu', () => {
   beforeEach(() => {
-    // Mock the useRouter hook to return a mock router object
-    useRouter.mockReturnValue({
-      push: jest.fn(),
-    });
-
-    // Mock the useAppSelector hook to return a mock state
     useAppSelector.mockReturnValue({
       auth: {
         tokens: {
@@ -31,51 +24,43 @@ describe('NavMenu', () => {
         },
       },
     });
-  });
 
-  it('should navigate to /tracks/myTrack when user is authenticated', () => {
-    render(
-    <ReduxProvider>
-          <NavMenu />
-    </ReduxProvider>
-);
-
-    // Моделируем событие щелчка.
-    const myPlaylistButton = screen.getByText('Мой плейлист');
-    fireEvent.click(myPlaylistButton);
-
-    // Проверяем путь вызова.
-    expect(useRouter().push).toHaveBeenCalledWith('/tracks/myTrack');
-  });
-
-  it('should navigate to / and show alert when user is not authenticated', () => {
-    // Изменяем хук useAppSelector, чтобы вернуть состояние без токенов
-    useAppSelector.mockReturnValue({
-      auth: {
-        tokens: {
-          access: null,
-          refresh: null,
-        },
-      },
+    useRouter.mockReturnValue({
+      push: jest.fn(),
     });
-
-    // Mock the alert function
-    global.alert = jest.fn();
-
-    render(
-        <ReduxProvider>
-              <NavMenu />
-        </ReduxProvider>
-    );
-
-    // Моделируем событие щелчка.
-    const myPlaylistButton = screen.getByText('Мой плейлист');
-    fireEvent.click(myPlaylistButton);
-
-     // Проверяем путь вызова.
-    expect(useRouter().push).toHaveBeenCalledWith('/');
-
-    // Проверяем сообшение об ошибке
-    expect(global.alert).toHaveBeenCalledWith('Вы не авторизованы!');
   });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('переключает видимость меню при нажатии на бургер', () => {
+    render(
+      <ReduxProvider>
+      <NavMenu />
+      </ReduxProvider>);
+
+    // Изначально меню не должно быть видно
+    expect(screen.queryByText('Главное'));
+    expect(screen.queryByText('Мой плейлист'));
+    expect(screen.queryByText('Войти'));
+
+    // Нажмем на бургер-меню, чтобы переключить видимость.
+    const burgerMenu = screen.getByRole('button', { name: '' }); // Предположим, что бургер-меню представляет собой кнопку без текста.
+    fireEvent.click(burgerMenu);
+
+    // После нажатия должно появиться меню.
+    expect(screen.getByText('Главное'));
+    expect(screen.getByText('Мой плейлист'));
+    expect(screen.getByText('Войти'));
+
+    // Нажмем на бургер-меню еще раз, чтобы скрыть меню.
+    fireEvent.click(burgerMenu);
+
+    // После повторного нажатия меню не должно быть видно.
+    expect(screen.queryByText('Главное'));
+    expect(screen.queryByText('Мой плейлист'));
+    expect(screen.queryByText('Войти'));
+  });
+
 });

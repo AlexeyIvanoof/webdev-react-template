@@ -33,11 +33,11 @@ export default function NawMenu() {
           height={17}
         />
       </div>
-      <div className={classNames(styles.navBurger, styles.burger)} onClick={toggleVisibility}>
+      <button className={classNames(styles.navBurger, styles.burger)} onClick={toggleVisibility}>
         <span className={styles.burgerLine}></span>
         <span className={styles.burgerLine}></span>
         <span className={styles.burgerLine}></span>
-      </div>
+      </button>
       {visible &&
       <div className={styles.navMenu}>
         <ul className={styles.menuList}>
