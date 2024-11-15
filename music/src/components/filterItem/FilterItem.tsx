@@ -77,8 +77,19 @@ export function FilterItem ({ title, list, isActive, handleFilter, filterName, n
         [title]: options && options.includes(item)
           ? options.filter((el) => el !== item)
           : [...options || [], item],
+        isActiveSort: false
+      })
+    ); 
+    
+    dispatch(
+      setFilters({
+        [title]: options && options.includes(item)
+          ? options.filter((el) => el !== item)
+          : [...options || [], item],
+        isActiveSort: false
       })
     );
+
     // Здесь обработчик клика по элементу
     if(arrFilters.includes(item)) {
       return setArrFilters(arrFilters.filter(el => el !== item)) // перебираем массив и оставляем его, но без этого элемента item

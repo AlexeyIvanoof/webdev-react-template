@@ -25,7 +25,7 @@ const dispatch = useDispatch();
 
     const fullCategory = CategoryArr.map((category) => (
         <li className={styles.sidebarItem} key={category.id}>
-        <Link className={styles.sidebarlink} href={`tracks/category/${category.id}`}> <Image
+        <Link className={styles.sidebarlink} href={`/tracks/category/${category.id}`}> <Image
             className={styles.sidebarImg}
             src={category.img}
             alt={category.alt}

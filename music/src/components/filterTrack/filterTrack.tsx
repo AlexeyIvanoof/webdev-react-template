@@ -11,7 +11,7 @@ const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "�
 export default function Filter() {
 const activeAuthors = useAppSelector(state => state.playlist.filterOptions.author);
 const activeGenre = useAppSelector(state => state.playlist.filterOptions.genre);
-const activeSearchValue = useAppSelector(state => state.playlist.filterOptions.searchValue);
+const activeSort = useAppSelector(state => state.playlist.filterOptions.sort);
 const {defaultPlaylist} = useAppSelector(state => state.playlist)
 const getUniqueAuthors = getUniqueValues(defaultPlaylist, "author")
 const getUniqueGenres = getUniqueValues(defaultPlaylist, "genre")
@@ -44,7 +44,7 @@ setActiveFilter((prev) => (prev === filterName ? null : filterName))
        handleFilter = {handleFilter} 
        isActive = {activeFilter === "году выпуска"} 
        filterName={"году выпуска"}
-       numberSelectedValues={activeSearchValue.length}/>
+       numberSelectedValues={activeSort.length}/>
     </div>
   );
 }
