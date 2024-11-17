@@ -50,58 +50,45 @@ import classNames from "classnames";
 import styles from "./filterItem.module.css";
 import { setFilters } from "@/store/features/track";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { useState } from "react";
 
 type Props = {
     title: 'author' | 'genre';
-    list: string[];
+    titleSort : 'sort';
+    list: string[] ;
     isActive: boolean;
     handleFilter: (filterName: string) => void;
     filterName: string;
     numberSelectedValues: number;
 }
 
-export function FilterItem ({ title, list, isActive, handleFilter, filterName, numberSelectedValues }: Props) {
+export function FilterItem({ title, list, isActive, handleFilter, filterName, numberSelectedValues, titleSort }: Props) {
   const dispatch = useAppDispatch();
-  const  selectedOptions = useAppSelector(
+  const selectedOptions = useAppSelector(
     (state) => state.playlist.filterOptions
-  )
-  const [arrFilters, setArrFilters] = useState([]);
+  );
+const selectedSortOptions = useAppSelector(
+  (state) => state.playlist.filterSort
+);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const item = event.target.id;
-    const options = selectedOptions[title];
- 
+    const options = selectedOptions[title] || [];
+
     dispatch(
       setFilters({
-        [title]: options && options.includes(item)
+        [title]: options.includes(item)
           ? options.filter((el) => el !== item)
-          : [...options || [], item],
-        isActiveSort: false
-      })
-    ); 
-    
-    dispatch(
-      setFilters({
-        [title]: options && options.includes(item)
-          ? options.filter((el) => el !== item)
-          : [...options || [], item],
+          : [...options, item],
         isActiveSort: false
       })
     );
-
-    // Здесь обработчик клика по элементу
-    if(arrFilters.includes(item)) {
-      return setArrFilters(arrFilters.filter(el => el !== item)) // перебираем массив и оставляем его, но без этого элемента item
-    }
-    setArrFilters([...arrFilters, item])
   };
 
   return (
     <div>
       <div className={styles.filterBlock}>
-      {numberSelectedValues > 0 && (
-         <div className={styles.selectedFilterCount}>{numberSelectedValues}</div>
+        {numberSelectedValues > 0 && (
+          <div className={styles.selectedFilterCount}>{numberSelectedValues}</div>
         )}
         <div 
           onClick={() => handleFilter(filterName)} 
@@ -110,15 +97,40 @@ export function FilterItem ({ title, list, isActive, handleFilter, filterName, n
           {title}
         </div>
       </div>
-      {isActive && (
+      {isActive ? (
         <ul className={styles.list}>
-        {list.map((item, index) => (
-   <li key={index} className={classNames(styles.listItem, {[styles.active]: arrFilters.includes(item)})} id={item} onClick={handleChange}>
-    {item}
-   </li>
- ))}
+          {list.map((item, index) => (
+            <li 
+              key={index} 
+              className={classNames(styles.listItem, { [styles.active]: selectedOptions[title]?.includes(item) })} 
+              id={item} 
+              onClick={handleChange}
+            >
+              {item}
+            </li>
+          ))}
         </ul>
-      )}
+      ):(
+        <ul className={styles.list}>
+         {["По умолчанию", "Сначала новые", "Сначала старые"].map(
+            (item) => (
+            <li 
+              key={item} 
+              className={classNames(styles.listItem, { [styles.active]: selectedSortOptions[titleSort]?.includes(item) })} 
+              onClick={() => {
+                dispatch(setFilters({
+                  sort: item,
+                  isActiveSort: false
+                }));
+              }}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      )
+      
+      }
     </div>
   );
 }

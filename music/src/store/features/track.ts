@@ -29,15 +29,17 @@ type PlaylistStateType = {
   currentPlaylist: TrackType[];
   favoriteTracksList: TrackType[]; 
   shuffledPlaylist: TrackType[];
-  categoryArr: TrackType[],
+  categoryArr: TrackType[];
   isPlaying: boolean;
   isShuffled: boolean;
+  filterSort: {
+    sort: string,
+    isActiveSort: boolean,
+  };
   filterOptions: {
     author: string[];
     genre: string[];
     searchValue: string;
-    sort: string,
-    isActiveSort: boolean,
   };
   filteredTracks: TrackType[];
 };
@@ -51,12 +53,14 @@ const initialState: PlaylistStateType = {
   categoryArr: [], 
   isPlaying: false,
   isShuffled: false,
+  filterSort: {
+    sort: "По умолчанию",
+    isActiveSort: false,
+  },
   filterOptions: {
     author: [],
     genre: [],
-    searchValue: "",
-    sort: "По умолчанию",
-    isActiveSort: false,
+    searchValue: ""
   },
   filteredTracks: [],
 };
@@ -150,9 +154,13 @@ setFilters: (
     author: action.payload.author || state.filterOptions.author,
     genre: action.payload.genre || state.filterOptions.genre,
     searchValue: action.payload.searchValue || state.filterOptions.searchValue,
-    sort: action.payload.sort || state.filterOptions.sort,
-    isActiveSort: action.payload.isActiveSort,
+   
   };
+
+  state.filterSort = {
+    sort: action.payload.sort || state.filterSort.sort,
+    isActiveSort: action.payload.isActiveSort,
+  }
 
   // Используем фильтры
   state.filteredTracks = state.defaultPlaylist.filter((t) => {
@@ -178,11 +186,11 @@ setFilters: (
   });
 
   // Используем сортировку
-  if (state.filterOptions.sort === "Сначала новые") {
+  if (state.filterSort.sort === "Сначала новые") {
     state.filteredTracks.sort(
       (a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime()
     );
-  } else if (state.filterOptions.sort === "Сначала старые") {
+  } else if (state.filterSort.sort === "Сначала старые") {
     state.filteredTracks.sort(
       (a, b) => new Date(a.release_date).getTime() - new Date(b.release_date).getTime()
     );
