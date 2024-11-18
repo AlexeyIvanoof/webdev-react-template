@@ -7,7 +7,8 @@ export default function CenterblockSearch() {
 
   const handleChange = (event: { target: { value: any; }; }) => {
     dispatch(setFilters({
-      searchValue: event.target.value
+      searchValue: event.target.value,
+      isActiveSort: false
     }));
   };
 

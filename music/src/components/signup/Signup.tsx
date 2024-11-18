@@ -33,46 +33,7 @@ export default function SignupPage() {
       }
     };
   
-    /*const handleRegister = async (event) => {
-      event.preventDefault();
-      setIsSubmitting(true);
-      try {
-        if (!email) {
-          setError("Не заполнено 'Почта'");
-          return;
-        }
-        if (!password) {
-          setError("Не заполнено 'Пароль'");
-          return;
-        }
-        if (!repeatPassword) {
-          setError("Подтвердите пароль");
-          return;
-        }
-        if (!username) {
-          setError("Не заполнено 'Имя пользователя'");
-          return;
-        }
-        if (password !== repeatPassword) {
-          setError("Пароли не совпадают");
-        } else {
-            RegistrationApi({ email, password, username })
-            .unwrap()
-            .then(() => {
-              alert(`Выполняется регистрация: ${email} ${username}`);
-              navigate.push("/login");
-            })
-            .catch((error) => {
-              throw new Error(error.message);
-            });
-        }
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setIsSubmitting(false);
-      }
-    };*/
-
+  
     const handleRegister = async () => {
         if (password !== repeatPassword) {
           setError("Пароли не совпадают");

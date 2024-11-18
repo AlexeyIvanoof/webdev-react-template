@@ -2,10 +2,9 @@
 'use client'
 import styles from "./filterTrack.module.css";
 import { getUniqueValues } from "@/utils/getUniqueValues";
-import { FilterItem } from "../filterItem/FilterItem";
+import { FilterItem, FilterSortItem } from "../filterItem/FilterItem";
 import { useState } from "react";
 import { useAppSelector } from "@/hooks";
-import { useSelector } from "react-redux";
 
 const SORT_OPTIONS = ["По умолчанию", "Сначала новые", "Сначала старые"];
 
@@ -25,7 +24,9 @@ setActiveFilter((prev) => (prev === filterName ? null : filterName))
   return (
     <div className={styles.centerblockFilter}>
       <div className={styles.filterTitle}>Искать по:</div>
-      <FilterItem title={"author"}
+      <FilterItem
+      title={"author"}
+      name ={"авторам"} 
       list={getUniqueAuthors}
       handleFilter={handleFilter}
       isActive={activeFilter === "исполнителю"}
@@ -33,16 +34,16 @@ setActiveFilter((prev) => (prev === filterName ? null : filterName))
       numberSelectedValues={activeAuthors.length}/>
 
       <FilterItem 
-       title = {"genre"} 
+       title = {"genre"}
+       name ={"жанру"} 
        list={getUniqueGenres} 
        handleFilter = {handleFilter} 
        isActive = {activeFilter === "жанру"} 
        filterName={"жанру"}
        numberSelectedValues={activeGenre.length}/>
 
-      <FilterItem 
-       title = {'sort'}
-       titleSort = {"sort"} 
+      <FilterSortItem 
+       title = {'году выпуска'}
        list={SORT_OPTIONS} 
        handleFilter = {handleFilter} 
        isActive = {activeFilter === "году выпуска"} 
