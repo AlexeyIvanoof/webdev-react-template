@@ -16,20 +16,18 @@ const tokens =  useAppSelector(state => state.auth.tokens);
     );
 
     useEffect(() => {
-      dispatch(getFavoriteTracks({access: tokens.access, refresh: tokens.refresh}))     
-    }, [dispatch, tokens.access, tokens.refresh ])
-
+      dispatch(getFavoriteTracks({access: tokens.access, refresh: tokens.refresh}))  
+      if (!tokens.access || !tokens.refresh) {
+        return   router.push('/')}   
+    }, [dispatch, router, tokens.access, tokens.refresh])
    
-    if (!tokens.access || !tokens.refresh) {
-      return   router.push('/')
-    }else{
     return(
         <>
         <CenterblockSearch/>
-        <Tracks tracks={favorite}  filteredTracks={favorite} title = {'Мои Треки'}/>
+        <Tracks tracks={favorite} filteredTracks={favorite} title={'Мои Треки'} error={""}/>
         </>
         
-    )}
+    )
 }
 
 

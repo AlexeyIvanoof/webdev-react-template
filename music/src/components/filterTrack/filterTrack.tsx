@@ -15,7 +15,6 @@ const activeSort = useAppSelector(state => state.playlist.filterSort.sort);
 const {defaultPlaylist} = useAppSelector(state => state.playlist)
 const getUniqueAuthors = getUniqueValues(defaultPlaylist, "author")
 const getUniqueGenres = getUniqueValues(defaultPlaylist, "genre")
-//const getUniqueSort = getUniqueValues(defaultPlaylist, "release_date")
 const [activeFilter, setActiveFilter] =  useState<string | null>(null);
 const handleFilter =(filterName: string) => {
 setActiveFilter((prev) => (prev === filterName ? null : filterName))

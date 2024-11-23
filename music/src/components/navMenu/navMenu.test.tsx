@@ -5,7 +5,7 @@ import { useAppSelector } from '../../hooks';
 import { useRouter } from 'next/navigation';
 import ReduxProvider from '@/store/ReduxProvider';
 
-// Mocking dependencies
+
 jest.mock('../../hooks', () => ({
   useAppSelector: jest.fn(),
 }));
@@ -40,24 +40,24 @@ describe('NavMenu', () => {
       <NavMenu />
       </ReduxProvider>);
 
-    // Изначально меню не должно быть видно
+  
     expect(screen.queryByText('Главное'));
     expect(screen.queryByText('Мой плейлист'));
     expect(screen.queryByText('Войти'));
 
-    // Нажмем на бургер-меню, чтобы переключить видимость.
-    const burgerMenu = screen.getByRole('button', { name: '' }); // Предположим, что бургер-меню представляет собой кнопку без текста.
+   
+    const burgerMenu = screen.getByRole('button', { name: '' }); 
     fireEvent.click(burgerMenu);
 
-    // После нажатия должно появиться меню.
+    
     expect(screen.getByText('Главное'));
     expect(screen.getByText('Мой плейлист'));
     expect(screen.getByText('Войти'));
 
-    // Нажмем на бургер-меню еще раз, чтобы скрыть меню.
+    
     fireEvent.click(burgerMenu);
 
-    // После повторного нажатия меню не должно быть видно.
+    
     expect(screen.queryByText('Главное'));
     expect(screen.queryByText('Мой плейлист'));
     expect(screen.queryByText('Войти'));

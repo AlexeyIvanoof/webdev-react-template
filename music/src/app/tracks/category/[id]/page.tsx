@@ -35,7 +35,7 @@ export default function Category () {
         })
       } catch (error) {
         if(error instanceof Error)
-          setError(error.message);
+          setError('Ошибка сети');
       }
     }, [dispatch, categoryArr, params.id]);
     return(

@@ -7,9 +7,9 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setDefaultPlaylist } from "@/store/features/track";
 import { TrackType } from "@/types/types";
 import { useEffect, useState } from "react";
-import Error from "@/app/error";
 
 export default function TracksPage () {
+    const [error, setError] = useState(String);
     const dispatch = useAppDispatch();
     const filteredTracks = useAppSelector(
       (state) => state.playlist.filteredTracks
@@ -23,14 +23,15 @@ export default function TracksPage () {
           setTracks(tracksData);
         })
         .catch((error) => {
-          return <Error error={error} reset={() => {}} />;
+          if(error instanceof Error)
+            setError('Ошибка сети, попробуйте позже');
         });
-    }, [dispatch]);
+    }, [dispatch, setError]);
   
     return(
         <>
         <CenterblockSearch/>
-        <Tracks tracks={tracks}  filteredTracks={filteredTracks} title = {'Треки'}/>
+        <Tracks tracks={tracks} error={error}  filteredTracks={filteredTracks} title = {'Треки'}/>
         </>
         
     )

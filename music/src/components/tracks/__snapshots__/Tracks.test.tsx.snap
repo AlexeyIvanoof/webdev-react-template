@@ -16,24 +16,20 @@ exports[`Tracks Component renders correctly 1`] = `
       Искать по:
     </div>
     <div>
-      <div
-        class="filterBlock"
-      >
+      <div>
         <div
           class="filterButton btnText"
         >
-          author
+          авторам
         </div>
       </div>
     </div>
     <div>
-      <div
-        class="filterBlock"
-      >
+      <div>
         <div
           class="filterButton btnText"
         >
-          genre
+          жанру
         </div>
       </div>
     </div>

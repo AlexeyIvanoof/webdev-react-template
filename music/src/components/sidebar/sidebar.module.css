@@ -85,3 +85,12 @@
   height: auto;
 }
 
+
+.Error{
+  color: coral;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+

@@ -128,7 +128,7 @@ const playlistSlice = createSlice({
       state.isShuffled = action.payload;
     },
 
-   //Работа с лайками
+
 
    setLikeTrack: (state, action: PayloadAction<number>) => {
     const trackId = action.payload;
@@ -136,14 +136,14 @@ const playlistSlice = createSlice({
     const trackToAdd = state.defaultPlaylist.find((track) => track._id === trackId);
     if (trackToAdd) {
       state.favoriteTracksList.push(trackToAdd);
-      //state.filteredTracks.push(trackToAdd);
+     
     }
 },
  setDisLikeTrack: (state, action: PayloadAction<number>) => {
   const trackId = action.payload;
   const actuallyFavoriteTrackList = state.favoriteTracksList.filter((track) => track._id !== trackId);
   state.favoriteTracksList = actuallyFavoriteTrackList; 
-  //state.filteredTracks = actuallyFavoriteTrackList;
+  
 },
 
 setFilters: (
@@ -162,7 +162,7 @@ setFilters: (
     isActiveSort: action.payload.isActiveSort,
   }
 
-  // Используем фильтры
+
   state.filteredTracks = state.defaultPlaylist.filter((t) => {
     const hasAuthors = state.filterOptions.author.length !== 0;
     const isAuthors = hasAuthors
@@ -185,7 +185,7 @@ setFilters: (
     }
   });
 
-  // Используем сортировку
+
   if (state.filterSort.sort === "Сначала новые") {
     state.filteredTracks.sort(
       (a, b) => new Date(b.release_date).getTime() - new Date(a.release_date).getTime()

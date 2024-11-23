@@ -3,8 +3,12 @@ import PlayList from "../playList/playList";
 import styles from "./trackListTitle.module.css";
 import classNames from "classnames";
 
+type TrackListTitleProps= {
+  tracks: TrackType[];
+  error: string
+}
 
-export default function TrackListTitle({ tracks }: { tracks: TrackType[]}) {
+export default function TrackListTitle({tracks, error}:TrackListTitleProps) {
   return (
     <div className={styles.centerblockContent}>
     <div className={styles.contentTitle}>
@@ -23,6 +27,7 @@ export default function TrackListTitle({ tracks }: { tracks: TrackType[]}) {
         </svg>
       </div>
     </div>
+    {error && <div className={styles.Error}>{error}</div>}
     <div className={styles.contentPlaylist}>
     {tracks.map((track)=> <PlayList key={track._id} track={track} tracks={tracks} />)}
     </div>

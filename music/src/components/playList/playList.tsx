@@ -6,7 +6,7 @@ import { formatTime } from "@/types/types";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setCurrentTrack } from "@/store/features/track";
 import useLikeTrack from "@/utils/useLikeTrack";
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 
 type PlayListProps = {
   track: TrackType,
@@ -21,12 +21,11 @@ export default function PlayList ({track,  tracks}:PlayListProps) {
 
   const {isLiked, handleLike} = useLikeTrack(track._id);
 
-  // Запоминаем значение isLiked, чтобы избежать ненужного повторного рендеринга.
   const memoizedIsLiked = useMemo(() => isLiked, [isLiked]);
 
-  const handleTrackClick = () => {
+  const handleTrackClick = useCallback(() => {
     dispatch(setCurrentTrack({ track, tracks }));
-  };
+  }, [dispatch, track, tracks]);
 
   return (
     <div onClick={handleTrackClick} className={styles.playlistItem}>

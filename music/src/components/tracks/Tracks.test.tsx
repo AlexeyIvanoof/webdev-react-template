@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-//import '@testing-library/jest-dom/extend-expect'; // для дополнительных совпадений
 import Tracks from './Track';
 import ReduxProvider from '@/store/ReduxProvider';
 
@@ -20,7 +19,7 @@ describe('Tracks Component', () => {
         </ReduxProvider>
 );
 
-    // снимок визуализированного компонента
+    
     expect(asFragment()).toMatchSnapshot();
   });
 });

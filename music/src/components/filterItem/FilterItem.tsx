@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback } from "react";
 import classNames from "classnames";
 import styles from "./filterItem.module.css";
 import { setFilters } from "@/store/features/track";
@@ -18,8 +18,7 @@ export function FilterItem({ title, list, isActive, handleFilter, filterName, nu
   const dispatch = useAppDispatch();
   const selectedOptions = useAppSelector((state) => state.playlist.filterOptions);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const item = event.target.id;
     const options = selectedOptions[title] || [];
 
@@ -31,9 +30,8 @@ export function FilterItem({ title, list, isActive, handleFilter, filterName, nu
         isActiveSort: false
       })
     );
-  };
+  }, [dispatch, selectedOptions, title]);
 
-  // Мемоизация элементов списка
   const memoizedListItems = useMemo(() => {
     return list.map((item, index) => (
       <li
@@ -49,7 +47,7 @@ export function FilterItem({ title, list, isActive, handleFilter, filterName, nu
 
   return (
     <div>
-      <div className={styles.filterBlock}>
+      <div>
         {numberSelectedValues > 0 && (
           <div className={styles.selectedFilterCount}>{numberSelectedValues}</div>
         )}
@@ -82,7 +80,6 @@ export function FilterSortItem({ title, isActive, handleFilter, filterName, numb
   const dispatch = useAppDispatch();
   const selectedSortOptions = useAppSelector((state) => state.playlist.filterSort);
 
-  // Мемоизация элементов списка
   const memoizedSortItems = useMemo(() => {
     return ["По умолчанию", "Сначала новые", "Сначала старые"].map((item) => (
       <li

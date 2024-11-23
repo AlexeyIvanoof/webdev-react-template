@@ -10,6 +10,7 @@ import { setCategoryArr } from "@/store/features/track";
 import { useDispatch } from "react-redux";
 
 export default function SidebarCategory() {
+const [error, setError] = useState(String);
 const dispatch = useDispatch();
   const [tracks, setTracks] = useState<TrackType[]>([]);
   useEffect(() => {
@@ -19,7 +20,8 @@ const dispatch = useDispatch();
         setTracks(data);
       })
       .catch((error) => {
-        throw new Error(error.message);
+        if(error instanceof Error)
+          setError('Ошибка сети, попробуйте позже');
       });
   }, [dispatch]);
 
@@ -37,6 +39,7 @@ const dispatch = useDispatch();
     ))
   return (
 <div className={styles.sidebarBlock}>
+{error && <div className={styles.Error}>{error}</div>}
 <ul className={styles.sidebarlist}>
 {fullCategory}
 </ul>

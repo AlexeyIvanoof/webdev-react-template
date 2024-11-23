@@ -5,7 +5,7 @@ import { useAppDispatch } from "@/hooks";
 export default function CenterblockSearch() {
   const dispatch = useAppDispatch();
 
-  const handleChange = (event: { target: { value: any; }; }) => {
+  const handleChange = (event: { target: { value: string; }; }) => {
     dispatch(setFilters({
       searchValue: event.target.value,
       isActiveSort: false

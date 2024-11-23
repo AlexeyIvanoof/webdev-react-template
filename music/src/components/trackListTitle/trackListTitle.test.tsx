@@ -3,7 +3,7 @@ import TrackListTitle from './trackListTitle';
 import { TrackType } from '@/types/types';
 import ReduxProvider from '@/store/ReduxProvider';
 
-// Mock data for tracks
+
 const mockTracks: TrackType[] = [
   {
     _id: 1,

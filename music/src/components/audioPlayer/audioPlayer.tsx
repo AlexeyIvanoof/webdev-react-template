@@ -17,26 +17,26 @@ export default function AudioPlayer() {
    const {isLiked, handleLike}= useLikeTrack(currentTrack ? currentTrack._id : 1)
   
 
-    // Получаем ссылку на DOM-элемент audio
+    
     const audioRef = useRef<HTMLAudioElement>(null);
     const audio = audioRef.current;
 
     
-    // Состояние текущего времени
+   
     const [currentTime, setCurrentTime] = useState(0);
-    // Состояние повтора
+   
     const [isLoop, setIsLoop] = useState(false);
 
     const duration: number = audio?.duration || 0;
     audio ? audio.loop = isLoop : null;
 
 
-    // Функция зацикливания трека
+    
     const toggleLoop = () => {
       setIsLoop(!isLoop);
     }
 
-    // Функция для воспроизведения и паузы
+    
     const togglePlay = () => {
       if (audio) {
         dispatch(setIsPlaying(!isPlaying));
@@ -54,7 +54,7 @@ export default function AudioPlayer() {
       audio?.addEventListener("ended", () => {
         dispatch(setNextTrack());
       });
-        // Воспроизводим новый трек
+        
         audio?.play();
   }, [audio, dispatch]);
 
@@ -65,10 +65,10 @@ export default function AudioPlayer() {
       audio?.play();
     }, [currentTrack])
 
-// Состояние громкости
+
 const [isVolume, setIsVolume] = useState(0.5);
 
-// Меняем громкость при изменении ползунка громкости
+
 useEffect(() => {
  if (audio) {
    audio.volume = isVolume;

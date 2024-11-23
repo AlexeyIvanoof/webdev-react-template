@@ -70,3 +70,13 @@
   overflow: auto;
   height: 700px;
 }
+
+.Error{
+  display: flex;
+  justify-content: center;
+  color: coral;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  margin-top: 200px;
+}

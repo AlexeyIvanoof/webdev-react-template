@@ -66,19 +66,18 @@
   }  
 
   .selectedFilterCount{
-  background-color: #ad61ff;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 13px;
-  top: 10px;
+    background-color: #ad61ff;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 13px;
   }  
   
   .active{
@@ -87,7 +86,7 @@
   }
 
   .filetrBlock{
-    position: relative;
+    position: absolute;
     display: flex;
     justify-content: flex-end;
   }

@@ -20,7 +20,7 @@ export default function SignupPage() {
   
     const navigate = useRouter();
   
-    const handleInputChange = (e: any) => {
+    const handleInputChange = (e: { target: { name: string; value: string; }; }) => {
       const { name, value } = e.target;
       if (name === "email") {
         setEmail(value);
@@ -51,7 +51,7 @@ export default function SignupPage() {
       };
     
 
-    // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
+   
     useEffect(() => {
       setError(String);
     }, [email, password, repeatPassword, username]);

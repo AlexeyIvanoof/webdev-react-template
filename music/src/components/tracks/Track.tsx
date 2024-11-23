@@ -10,16 +10,17 @@ type TrackTypeProp = {
   filteredTracks: TrackType[];
   tracks: TrackType[];
   title: string | undefined
+  error: string;
 }
 
 
-export default function Tracks({filteredTracks, title}: TrackTypeProp) {
+export default function Tracks({filteredTracks, title, error}: TrackTypeProp) {
  
     return (
     <>
           <h2 className={styles.centerblockH2}>{title}</h2>
           <Filter/>
-          <TrackListTitle  tracks={filteredTracks}/>
+          <TrackListTitle error={error} tracks={filteredTracks}/>
     </>
     )
 }
