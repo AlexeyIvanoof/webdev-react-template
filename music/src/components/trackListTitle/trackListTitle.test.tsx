@@ -35,7 +35,7 @@ describe('TrackListTitle', () => {
   it('renders correctly', () => {
     const { container } = render(
         <ReduxProvider>
-              <TrackListTitle tracks={mockTracks} />
+              <TrackListTitle tracks={mockTracks} error={''} />
        </ReduxProvider>
   );
     expect(container).toMatchSnapshot();

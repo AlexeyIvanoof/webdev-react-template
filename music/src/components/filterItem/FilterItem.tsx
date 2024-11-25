@@ -4,7 +4,7 @@ import styles from "./filterItem.module.css";
 import { setFilters } from "@/store/features/track";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 
-type Props = {
+interface FilterItemProps {
   title: 'author' | 'genre';
   name: 'авторам' | 'жанру';
   list: string[];
@@ -12,14 +12,14 @@ type Props = {
   handleFilter: (filterName: string) => void;
   filterName: string;
   numberSelectedValues: number;
-};
+}
 
-export function FilterItem({ title, list, isActive, handleFilter, filterName, numberSelectedValues, name }: Props) {
+export function FilterItem({ title, name, list, isActive, handleFilter, filterName, numberSelectedValues }: FilterItemProps) {
   const dispatch = useAppDispatch();
   const selectedOptions = useAppSelector((state) => state.playlist.filterOptions);
 
-  const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
-    const item = event.target.id;
+  const handleChange = useCallback((event: React.MouseEvent<HTMLLIElement>) => {
+    const item = event.currentTarget.id;
     const options = selectedOptions[title] || [];
 
     dispatch(
@@ -67,16 +67,15 @@ export function FilterItem({ title, list, isActive, handleFilter, filterName, nu
   );
 }
 
-type SortProps = {
+interface FilterSortItemProps {
   title: 'году выпуска';
-  list: string[];
   isActive: boolean;
   handleFilter: (filterName: string) => void;
   filterName: string;
   numberSelectedValues: number;
-};
+}
 
-export function FilterSortItem({ title, isActive, handleFilter, filterName, numberSelectedValues }: SortProps) {
+export function FilterSortItem({ title, isActive, handleFilter, filterName, numberSelectedValues }: FilterSortItemProps) {
   const dispatch = useAppDispatch();
   const selectedSortOptions = useAppSelector((state) => state.playlist.filterSort);
 
