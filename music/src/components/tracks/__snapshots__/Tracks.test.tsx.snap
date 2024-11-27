@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tracks Component renders correctly 1`] = `
+<DocumentFragment>
+  <h2
+    class="centerblockH2"
+  >
+    My Playlist
+  </h2>
+  <div
+    class="centerblockFilter"
+  >
+    <div
+      class="filterTitle"
+    >
+      Искать по:
+    </div>
+    <div>
+      <div>
+        <div
+          class="filterButton btnText"
+        >
+          авторам
+        </div>
+      </div>
+    </div>
+    <div>
+      <div>
+        <div
+          class="filterButton btnText"
+        >
+          жанру
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="filterBlock"
+      >
+        <div
+          class="filterButton btnText"
+        >
+          году выпуска
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="centerblockContent"
+  >
+    <div
+      class="contentTitle"
+    >
+      <div
+        class="playlistTitleCol col01"
+      >
+        Трек
+      </div>
+      <div
+        class="playlistTitleCol col02"
+      >
+        Исполнитель
+      </div>
+      <div
+        class="playlistTitleCol col03"
+      >
+        Альбом
+      </div>
+      <div
+        class="playlistTitleCol col04"
+      >
+        <svg
+          class="playlistTitleSvg"
+        >
+          <use
+            xlink:href="/sprite.svg#icon-watch"
+          />
+        </svg>
+      </div>
+    </div>
+    <div
+      class="contentPlaylist"
+    />
+  </div>
+</DocumentFragment>
+`;
